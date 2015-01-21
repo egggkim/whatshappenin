@@ -28,6 +28,8 @@ gem 'spring',        group: :development
 
 group :development, :test do 
   gem 'rspec-rails'
+  gem 'better_errors', '~> 2.0.0'
+  gem 'binding_of_caller'
 end
 
 gem 'bootstrap-sass', '~> 3.2.0'
