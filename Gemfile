@@ -34,6 +34,7 @@ end
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
+gem 'bcrypt', '~>3.1.9'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
