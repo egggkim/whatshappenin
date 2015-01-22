@@ -1,9 +1,7 @@
-require 'bcrypt'
-
 class User < ActiveRecord::Base
   attr_reader :password
   # not sure attr_reader belongs here
-
+  
   def password=(unencrypted_password)
     unless unencrypted_password.empty?
       @password = unencrypted_password
