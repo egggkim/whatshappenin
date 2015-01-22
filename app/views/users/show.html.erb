@@ -1,0 +1,13 @@
+<h1>More about <%= @user.name %></h1>
+
+<!-- User avatar -->
+<!-- Previous check-ins -->
+<!-- Friends -->
+
+<h5>Contact</h5>
+<!-- if else current user sees different view -->
+  <%= bootstrap_form_for @user do |f| %>
+    <%= f.text_area :message, label: "Message:" %>
+
+    <%= f.submit "Send message",  %>
+  <% end %>
