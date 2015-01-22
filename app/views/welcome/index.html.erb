@@ -35,6 +35,13 @@
 		<div class="container">
 			<div class="row">
           <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Sign Up", new_user_path %></button></li>
+
+          <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button></li>
+
+          <% if logged_in? %>
+            <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Log Out", logout_path, ethod: :delete %></button></li>
+          <% end %>
+
 			    <div class="col-md-10 col-md-offset-1 mt">
 			    	<h1 class="mb">WHAT'S HAPPENIN?</h1>
 			    </div>
