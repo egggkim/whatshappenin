@@ -4,8 +4,8 @@
 <!-- Previous check-ins -->
 <!-- Friends -->
 
-<h5>Contact</h5>
+
 <!-- if/else current user sees different view -->
 
-  <%= mail_to @user.email, "Send email", subject: "Hello!" %>
+  <%= mail_to @user.email, "Send email", subject: "#{@user.name} Says Hello!" %>
   <!-- Need to implement messaging system? -->
