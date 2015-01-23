@@ -9,11 +9,14 @@
 </div>
 
 <h2>here are your friends</h2>
-<div>
-<% current_user.friendships.each do |friendship| %>
-<h2><%= friendship.friendee.name%></h2>
-<% end %>
+  <div>
+    <% current_user.friendships.each do |friendship| %>
+    <h2><%= friendship.friendee.name%></h2>
+    <h2><%= link_to "delete friend", friendship, :method => :delete %></h2>
+  <% end %>
 </div>
+
+
 
 
 <% if logged_in? %>
