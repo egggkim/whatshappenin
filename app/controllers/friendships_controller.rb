@@ -1,8 +1,7 @@
 class FriendshipsController < ApplicationController
   def create
-    @friendship = Friendship.new({:friendee_id => params[:friendee_id], :friender_id => current_user.id})
-    # friendee = User.find(params[:friendee_id])
-    # @friendship = current_user.friends.push(friendee)
+    # @friendship = Friendship.new({:friendee_id => params[:friendee_id], :user_id => current_user.id})
+    @friendship = current_user.friendships.build({:friendee_id => params[:friendee_id], :user_id => current_user.id})
     if @friendship.save
       flash[:notice] = "added friend"
       redirect_to users_path
