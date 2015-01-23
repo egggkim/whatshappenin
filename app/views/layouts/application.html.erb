@@ -7,8 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if logged_in? %>
+  <%= render 'shared/nav' %>
+<% end %>
+  <%= yield %>
 
-<%= yield %>
+<% if logged_in? %>
+  <%= render 'shared/footer' %>
+<% end %>
 
 </body>
 </html>

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+  get '/about' => 'welcome#about'
+  get '/contact' => 'welcome#contact'
+  get '/developers' => 'welcome#developers'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
