@@ -1,5 +1,18 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+
+<h2><%=current_user.name%> is logged in right now</h2>
+
+<div>
+  <% @users.each do |user|%>
+    <%= user.name %>
+    <%= link_to "add friend", friendships_path(:friendee_id => user.id), :method=>:post  %>
+  <% end %>
+</div>
+
+<h2>here are your friends</h2>
+<div>
+    <%=  %>
+</div>
+
 
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>

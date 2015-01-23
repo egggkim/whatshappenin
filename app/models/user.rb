@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
+  has_many :friendships
+  has_many :friends, through: :friendships, class_name:"User"
+
   attr_reader :password
   # not sure attr_reader belongs here
-  
+
   def password=(unencrypted_password)
     unless unencrypted_password.empty?
       @password = unencrypted_password
