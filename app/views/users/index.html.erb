@@ -10,7 +10,9 @@
 
 <h2>here are your friends</h2>
 <div>
-<h2><%= current_user.friendships%></h2>
+<% current_user.friendships.each do |friendship| %>
+<h2><%= friendship.friendee.name%></h2>
+<% end %>
 </div>
 
 
