@@ -184,6 +184,7 @@ input {
 #h {
 	background: url(header.jpg) no-repeat center top;
 	padding-top: 10px;
+	padding-bottom: 40px;
 	text-align:center;
 	background-attachment: relative;
 	background-position: center center;
