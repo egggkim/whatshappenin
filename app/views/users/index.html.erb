@@ -18,14 +18,13 @@
     <% end %>
   </div>
 
-<h2>these users wants to be your friend</h2>
-  <div>
-    <% current_user.friendship_requests.each do |request| %>
-
-    <%= request.user.name %>
-    <% end %>
-
-  </div>
+<h3>accept friends</h3>
+<div>
+  <% @users.each do |user|%>
+    <%= user.name %>
+    <%= link_to "accept friend", friendships_path(:friendee_id => user.id), :method=>:post  %>
+  <% end %>
+</div>
 
 
 <h2>here are your friends</h2>
