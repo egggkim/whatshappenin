@@ -17,15 +17,14 @@
 //= require_tree .
 
 function initialize() {
-  
   var markers = [];
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   var defaultBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(-33.8902, 151.1759),
-      new google.maps.LatLng(-33.8474, 151.2631));
+      new google.maps.LatLng(34.0500, -118.2500),
+      new google.maps.LatLng(34.0693, -118.2493));
   map.fitBounds(defaultBounds);
 
   // Create the search box and link it to the UI element.
@@ -58,7 +57,7 @@ function initialize() {
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
+        scaledSize: new google.maps.Size(250, 250)
       };
 
       // Create a marker for each place.
