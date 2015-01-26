@@ -1,0 +1,11 @@
+<nav class='navbar navbar-default fixed-top'>
+  <div class='navbar-header nav-right'>
+    <ul class='nav nav-pills'>
+      <li>Logged in as: <%= current_user.name %></li>
+      <!-- Add link to create new check in -->
+      <li><%= link_to "Edit my profile", edit_user_path(current_user) %></li>
+      <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+    </ul>
+  </div>
+</nav>
+

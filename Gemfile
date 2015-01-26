@@ -4,6 +4,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
+
+gem 'figaro'
+gem 'carrierwave' #required for images to be stored on amazon S3
+gem 'fog'         # required for Amazon S3
+gem 'mini_magick' # for post-upload image processing
+gem 'carrierwave-postgresql'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -30,13 +36,12 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller'
+  # gem 'rspec_junit_formatter', :git => 'git@github.com:circleci/rspec_junit_formatter.git'
 end
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'bcrypt'
-gem 'figaro'
-
 
 # Use unicorn as the app server
 # gem 'unicorn'
