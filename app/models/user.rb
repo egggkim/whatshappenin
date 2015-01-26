@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # has_many :inverse_friendships, class_name => "Friendship", :foreign_key =>"friendee_id"
   # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
+  # mount_uplader is used for carrierwave
+  mount_uploader :avatar, AvatarUploader
   attr_reader :password
   # not sure attr_reader belongs here
 
