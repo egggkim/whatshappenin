@@ -1,7 +1,22 @@
 class User < ActiveRecord::Base
+  
+# inverse_of is used so that the requestee has a way to call on the list of users sending the friend request
+  has_many :friendship_requests, inverse_of: :user
+  has_many :pendingfriends, through: :friendship_requests, inverse_of: :friendee
+
+
+
+
+
   has_many :friendships
   has_many :friends, through: :friendships
-  # has_many :inverse_friendships, class_name => "Friendship", :foreign_key =>"friendee_id"
+
+
+
+
+
+
+  # has_many :inverse_friendships, class_name => "Friendship", :ftoreign_key =>"friendee_id"
   # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   attr_reader :password
