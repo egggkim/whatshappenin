@@ -1,13 +1,20 @@
-<h1>Sign up</h1>
 
-<div class='col-md-3'>
+<!-- This empty Div used to center form -->
+<div class='col-md-4'>
+
+</div>
+
+<div class='col-md-4'>
+  <h1>Sign up</h1>
 <!-- needs to be centered on page -->
   <%= bootstrap_form_for @user do |f| %>
     <%= f.text_field :name, label: "Name:" %>
     <%= f.email_field :email, label: "Email:" %>
     <%= f.password_field :password, label: "Password:" %>
     <%= f.password_field :password_confirmation, label: "Password Confirmation:" %>
-
+    <%= f.file_field :image %>
     <%= f.submit "Sign me up!" %>
   <% end %>
 </div>
+
+
