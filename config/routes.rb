@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users
   resources :friendships
+  resources :friendship_requests
   get '/signup' => 'users#new'
   
   # user sessions routes

@@ -1,12 +1,32 @@
 
 <h2><%=current_user.name%> is logged in right now</h2>
 
+
+<h3>possible friends</h3>
 <div>
   <% @users.each do |user|%>
     <%= user.name %>
-    <%= link_to "add friend", friendships_path(:friendee_id => user.id), :method=>:post  %>
+    <%= link_to "request friend", friendship_requests_path(:friendee_id => user.id), :method=>:post  %>
   <% end %>
 </div>
+
+<h2>you sent requests to these users</h2>
+  <div>
+    <% current_user.friendship_requests.each do |request| %>
+
+    <%= request.friendee.name %>
+    <% end %>
+  </div>
+
+<h2>these users wants to be your friend</h2>
+  <div>
+    <% current_user.friendship_requests.each do |request| %>
+
+    <%= request.user.name %>
+    <% end %>
+
+  </div>
+
 
 <h2>here are your friends</h2>
   <div>
