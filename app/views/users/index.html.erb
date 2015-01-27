@@ -1,7 +1,7 @@
 
 <h2><%=current_user.name%> is logged in right now</h2>
 
-
+<!-- currently a list of all users -->
 <h3>possible friends</h3>
 <div>
   <% @users.each do |user|%>
@@ -10,6 +10,8 @@
   <% end %>
 </div>
 
+
+<!-- creates a friendship_request -->
 <h2>you sent requests to these users</h2>
   <div>
     <% current_user.friendship_requests.each do |request| %>
@@ -18,6 +20,12 @@
     <% end %>
   </div>
 
+<!-- shows who have sent requests to the current_user -->
+<h2>these users sent requests to you</h2>
+  <div>
+      <%= current_user.requests %>
+  </div>
+  
 <h3>accept friends</h3>
 <div>
   <% @users.each do |user|%>
@@ -34,6 +42,7 @@
     <h2><%= link_to "delete friend", friendship, :method => :delete %></h2>
   <% end %>
 </div>
+
 
 
 
