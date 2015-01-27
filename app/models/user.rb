@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   has_many :friendship_requests, inverse_of: :user
   has_many :pendingfriends, through: :friendship_requests, inverse_of: :friendee
 
+  def requests
+# create a method that will query the database where current_user.id equal to friendee.id
+    @requests = friendship_requests.where(friendee_id: self.id).map(&:user).map(&:name)
+
+  end
 
 
 

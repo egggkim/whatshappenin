@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root 'welcome#index'
   resources :users
-  resources :friendships
-  resources :friendship_requests
+  resources :friendships, only:[:create, :destroy]
+  resources :friendship_requests, only:[:create, :destroy]
   get '/signup' => 'users#new'
   
   # user sessions routes

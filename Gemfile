@@ -37,6 +37,7 @@ gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'figaro'
 
+gem 'pry'
 
 # Use unicorn as the app server
 # gem 'unicorn'

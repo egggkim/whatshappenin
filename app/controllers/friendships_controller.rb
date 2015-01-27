@@ -15,4 +15,6 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     redirect_to users_path
   end
+
+
 end
