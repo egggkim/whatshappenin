@@ -9,12 +9,17 @@ class FriendshipRequestsController < ApplicationController
     end
   end
 
+
   def destroy
-    @request = current_user.friendships_requests.find(params[:id])
+    @request = FriendshipRequest.find(params[:id])
+
+    if params[:accept]
+      @request.user.add_friend(@request.friendee)
+      @request.friendee.accept_friend(@request.user)
+    end
+
     @request.destroy
     redirect_to users_path
   end
-
-
 
 end
