@@ -78,6 +78,23 @@ function initialize() {
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
+    // D is the longitude
+    console.log(place.geometry.location.D);
+    // k is the latitude
+    console.log(place.geometry.location.k);
+
+    var lng = place.geometry.location.D;
+    var lat = place.geometry.location.k;
+    console.log(lng);
+    console.log(lat);
+
+
+     $.getJSON("https://api.instagram.com/v1/media/search?lat=41.974162&lng=-87.90732100000002&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02", function(response, status, jqXHR){
+      $('.pane').eq(2).find('p').eq(0).html(jqXHR.responseText);
+      console.log(response);
+      console.log(status);
+      console.log(jqXHR); 
+    });
   });
 
   // Sets a listener on a radio button to change the filter type on Places
