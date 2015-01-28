@@ -10,21 +10,10 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/img/favicon.ico">
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    "assets/css/custom-animations.css", "assets/css/style.css", "assets/css/bootstrap.css", "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "assets/js/ie10-viewport-bug-workaround.js", "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-
-  <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/custom-animations.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-
+   
     <!-- GOOGLE MAPS API -->
     
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=#{ENV[API_KEY]}"></script>
