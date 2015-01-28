@@ -17,17 +17,6 @@
 //= require_tree .
 
 function initialize() {
-<<<<<<< HEAD
-  var markers = [];
-  var map = new google.maps.Map(document.getElementById('map-canvas'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-
-  var defaultBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(34.0500, -118.2500),
-      new google.maps.LatLng(34.0693, -118.2493));
-  map.fitBounds(defaultBounds);
-=======
   
   var mapOptions = {
     center: new google.maps.LatLng(34.0500, -118.2500),
@@ -36,7 +25,6 @@ function initialize() {
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
     mapOptions);
->>>>>>> mapzoom
 
  var input = /** @type {HTMLInputElement} */(
       document.getElementById('pac-input'));
@@ -61,24 +49,6 @@ function initialize() {
     if (!place.geometry) {
       return;
     }
-<<<<<<< HEAD
-    for (var i = 0, marker; marker = markers[i]; i++) {
-      marker.setMap(null);
-    }
-
-    // For each place, get the icon, place name, and location.
-    markers = [];
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0, place; place = places[i]; i++) {
-      var image = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(250, 250)
-      };
-=======
->>>>>>> mapzoom
 
     // If the place has a geometry, then present it on a map.
     if (place.geometry.viewport) {
