@@ -89,7 +89,7 @@ function initialize() {
     console.log(lat);
 
 
-     $.getJSON("https://api.instagram.com/v1/media/search?lat=41.974162&lng=-87.90732100000002&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02", function(response, status, jqXHR){
+     $.getJSON("https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02", function(response, status, jqXHR){
       $('.pane').eq(2).find('p').eq(0).html(jqXHR.responseText);
       console.log(response);
       console.log(status);
