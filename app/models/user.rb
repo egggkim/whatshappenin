@@ -7,13 +7,10 @@ class User < ActiveRecord::Base
   has_many :request_received, class_name: FriendshipRequest, foreign_key: :friendee_id
 
 #   def requests
-# # create a method that will query the database where current_user.id equal to friendee.id
+#     create a method that will query the database where current_user.id equal to friendee.id
 #     @requests = friendship_requests.where(friendee_id: self.id).map(&:user).map(&:name)
 
 #   end
-
-
-
 
   has_many :friendships
   has_many :friends, through: :friendships
@@ -25,9 +22,12 @@ class User < ActiveRecord::Base
 
   def accept_friend(user)
     self.friendships.create({:friendee_id => user.id, :user_id=> user.id})
-
   end
 
+#   def find_inverse_friendship
+# # create a method that will query the database and return the inverse of the same friendship so it is possible to delete both records at once
+#     @inverse_friendship = friendships.where(user_id:)
+#   end
 
 
 
