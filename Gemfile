@@ -37,6 +37,15 @@ gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'figaro'
 
+gem 'carrierwave'
+
+gem 'carrierwave-postgresql'
+
+gem 'fog'   
+
+gem 'pg'
+
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
