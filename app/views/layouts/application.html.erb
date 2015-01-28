@@ -10,8 +10,9 @@
     <meta name="author" content="">
    
 
-  <%= stylesheet_link_tag  "custom-animations.css", "style.css", "bootstrap.css", "application.css", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "ie10-viewport-bug-workaround.js", "application.js", "data-turbolinks-track" => true %>
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   <%= csrf_meta_tags %>
    
     <!-- GOOGLE MAPS API -->
@@ -35,6 +36,6 @@
  <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-     <%= javascript_include_tag "jquery.min.js", "bootstrap.min.js", "retina-1.1.0.js", "jquery.unveilEffects.js" %>
+     
 </body>
 </html>
