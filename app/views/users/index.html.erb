@@ -23,16 +23,11 @@
 <!-- shows who have sent requests to the current_user -->
 <h2>these users sent requests to you</h2>
   <div>
-      <%= current_user.requests %>
+      <% current_user.request_received.each do |request| %>
+        <%= request.user.name %>
+        <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
+      <% end %>
   </div>
-  
-<h3>accept friends</h3>
-<div>
-  <% @users.each do |user|%>
-    <%= user.name %>
-    <%= link_to "accept friend", friendships_path(:friendee_id => user.id), :method=>:post  %>
-  <% end %>
-</div>
 
 
 <h2>here are your friends</h2>

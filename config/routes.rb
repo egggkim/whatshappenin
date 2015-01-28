@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   resources :friendships, only:[:create, :destroy]
   resources :friendship_requests, only:[:create, :destroy]
   get '/signup' => 'users#new'
+
+  
   
   # user sessions routes
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
