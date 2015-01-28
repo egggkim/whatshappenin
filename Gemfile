@@ -44,4 +44,5 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'pry'
+gem 'thin', group: :production
 
