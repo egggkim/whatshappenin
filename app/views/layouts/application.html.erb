@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon.ico">
+   
 
-  <%= stylesheet_link_tag    "assets/css/custom-animations.css", "assets/css/style.css", "assets/css/bootstrap.css", "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "assets/js/ie10-viewport-bug-workaround.js", "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag  "custom-animations.css", "style.css", "bootstrap.css", "application.css", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "ie10-viewport-bug-workaround.js", "application.js", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
    
     <!-- GOOGLE MAPS API -->
@@ -35,9 +35,6 @@
  <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/retina-1.1.0.js"></script>
-    <script src="assets/js/jquery.unveilEffects.js"></script>
+     <%= javascript_include_tag "jquery.min.js", "bootstrap.min.js", "retina-1.1.0.js", "jquery.unveilEffects.js" %>
 </body>
 </html>
