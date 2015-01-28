@@ -26,11 +26,8 @@
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
 
     <!-- GOOGLE MAPS API -->
-    <script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?v=3&key=#{API_KEY}">
-    </script>
     
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/geocode/json?&key=#{API_KEY}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=#{ENV[API_KEY]}"></script>
 
     <script type="text/javascript">
       google.maps.event.addDomListener(window, 'load', initialize);
