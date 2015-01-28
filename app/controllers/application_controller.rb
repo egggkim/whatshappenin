@@ -4,5 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SessionsHelper
+
+  def api_key
+    @api_key = ENV['API_KEY']
+  end
   
 end

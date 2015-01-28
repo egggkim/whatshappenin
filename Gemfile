@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use postgresql as the database for Active Record
@@ -42,13 +42,10 @@ end
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
 gem 'bcrypt'
+<<<<<<< HEAD
+=======
+gem 'figaro'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'pry'
+>>>>>>> friendship_experiment
 
