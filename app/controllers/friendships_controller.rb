@@ -1,8 +1,8 @@
 class FriendshipsController < ApplicationController
   def create
-    # @friendship = Friendship.new({:friendee_id => params[:friendee_id], :user_id => current_user.id})
     @friendship = current_user.friendships.build({:friendee_id => params[:friendee_id], :user_id => current_user.id})
-    if @friendship.save
+    @inverse_friendship = current_user.friendships.build({:friendee_id => current_user.id, :user_id=> params[:friendee_id]})
+    if @friendship.save && @inverse_friendship.save
       redirect_to users_path
     else
       redirect_to users_path
@@ -15,4 +15,6 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     redirect_to users_path
   end
+
+
 end

@@ -6,17 +6,23 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root 'welcome#index'
   resources :users
-  resources :friendships
+  resources :friendships, only:[:create, :destroy]
+  resources :friendship_requests, only:[:create, :destroy]
   get '/signup' => 'users#new'
+
+  
   
   # user sessions routes
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
+<<<<<<< HEAD
   get '/about' => 'welcome#about'
   get '/contact' => 'welcome#contact'
   get '/developers' => 'welcome#developers'
+=======
+>>>>>>> friendship_experiment
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
