@@ -11,6 +11,7 @@ gem 'fog'         # required for Amazon S3
 gem 'mini_magick' # for post-upload image processing
 gem 'carrierwave-postgresql'
 gem 'pg'
+gem 'instagram'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
