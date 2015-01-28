@@ -34,7 +34,7 @@
   <div>
     <% current_user.friendships.each do |friendship| %>
     <h2><%= friendship.friendee.name%></h2>
-    <h2><%= link_to "delete friend", friendship, :method => :delete %></h2>
+    <%= link_to "delete friend", friendship, :method => :delete %>
   <% end %>
 </div>
 
