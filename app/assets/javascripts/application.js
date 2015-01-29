@@ -88,14 +88,28 @@ function initialize() {
     console.log(lng);
     console.log(lat);
 
-
-     $.getJSON("https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02", function(response, status, jqXHR){
-      $('.pane').eq(2).find('p').eq(0).html(jqXHR.responseText);
-      console.log(response);
-      console.log(status);
-      console.log(jqXHR); 
+     var request = $.ajax({
+      type: "GET",
+      dataType: 'jsonp',
+      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
     });
-  });
+
+     request.done(function (data) {
+      instaData = data;
+      console.log(data)
+      dataCount = instaData.data.length;
+      for(i=0; i<dataCount; i++) {
+        postPixUrl = instaData.data[i].images.thumbnail.url;
+          console.log(postPixUrl);
+        var instaDiv = '<li>';
+        instaDiv += '<img src="' + postPixUrl + '" width="150px" height="150px">';
+        $('#picture-feed').append(instaDiv);
+
+
+      }
+      console.log(dataCount);
+  
+      });
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
@@ -110,5 +124,8 @@ function initialize() {
   setupClickListener('changetype-address', ['address']);
   setupClickListener('changetype-establishment', ['establishment']);
   setupClickListener('changetype-geocode', ['geocode']);
-}
+  }
+
+ )};
+
   
