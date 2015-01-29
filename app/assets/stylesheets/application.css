@@ -38,6 +38,18 @@
   color: yellow;
 }
 
+#h.instaDiv {
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+
+#picture-feed li {
+  display: inline-block;
+  list-style-type: none;
+}
+
 .controls {
         margin-top: 16px;
         border: 1px solid transparent;
