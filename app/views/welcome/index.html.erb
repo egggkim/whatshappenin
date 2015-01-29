@@ -4,9 +4,12 @@
 	<div id="h">
 		<div class="container">
 			<div class="row">
-          <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Sign Up", new_user_path %></button></li>
+					<% if !logged_in? %>
+	          <button class="btn btn-lg btn-info btn-register"><%= link_to "Sign Up", new_user_path %></button>
+	          
+	          <button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button>
+	        <% end %>
 
-          <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button></li>
 
           <% if logged_in? %>
             <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
