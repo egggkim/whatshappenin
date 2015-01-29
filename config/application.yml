@@ -12,3 +12,8 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 
+S3_KEY: AKIAIVRHQ3GCPCKC55DQ
+S3_SECRET: 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
+S3_BUCKET: carrierwave-tony
+S3_REGION: us-west-1
+
