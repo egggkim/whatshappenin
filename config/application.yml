@@ -12,8 +12,3 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 
-S3_KEY: AKIAIPX2UC65TT2SWLMA
-S3_SECRET: 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
-S3_BUCKET: carrierwave-tony
-S3_REGION: us-west-1
-API_KEY: AIzaSyA_oRccz2FE1DBU4uHkv5kMUNSodoJ4HPM
