@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors', '~> 2.0.0'
   gem 'binding_of_caller'
+  gem 'factory_girl_rails'
   # gem 'rspec_junit_formatter', :git => 'git@github.com:circleci/rspec_junit_formatter.git'
 end
 
