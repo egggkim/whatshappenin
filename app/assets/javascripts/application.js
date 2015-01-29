@@ -35,6 +35,7 @@ function initialize() {
 
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
+  console.log(document.getElementById('pac-input').innerHTML);
 
   var infowindow = new google.maps.InfoWindow();
   var marker = new google.maps.Marker({
@@ -78,6 +79,10 @@ function initialize() {
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
+
+
+/// / Instagram + Twitter requests
+
     // D is the longitude
     console.log(place.geometry.location.D);
     // k is the latitude
@@ -111,8 +116,17 @@ function initialize() {
 
       }
       console.log(dataCount);
+
+      var request = $.ajax({
+      type: "GET",
+      dataType: 'jsonp',
+      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
+    });
   
       });
+
+      // end of Instagram request
+        /////////////////// 
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
