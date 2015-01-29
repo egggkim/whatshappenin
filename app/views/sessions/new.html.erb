@@ -3,6 +3,7 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+<!-- empty div used to center login form -->
 <div class='col-md-4'>
 
 </div>
@@ -14,5 +15,8 @@
 
       <%= f.submit 'Log In' %>
     <% end %>
+    <br>
+    <%= link_to "Cancel", root_path  %>
+
   </div>
 
