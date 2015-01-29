@@ -98,6 +98,9 @@ function initialize() {
       instaData = data;
       console.log(data)
       dataCount = instaData.data.length;
+
+      $('#picture-feed').empty();
+
       for(i=0; i<dataCount; i++) {
         postPixUrl = instaData.data[i].images.thumbnail.url;
           console.log(postPixUrl);
