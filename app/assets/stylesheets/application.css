@@ -33,6 +33,11 @@
 
 }
 
+#instacount {
+  font-size: 40px;
+  color: yellow;
+}
+
 .controls {
         margin-top: 16px;
         border: 1px solid transparent;
