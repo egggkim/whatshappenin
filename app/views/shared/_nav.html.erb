@@ -5,6 +5,9 @@
       <!-- Add link to create new check in -->
       <li><%= link_to "Edit my profile", edit_user_path(current_user) %></li>
       <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+      <% if !logged_in? %>
+        <li><%= mail_to current_user.email, "Send email", subject: "#{current_user.name} Says Hello!" %></li>
+      <% end %>
     </ul>
   </div>
 </nav>

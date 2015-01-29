@@ -2,12 +2,19 @@
 <h2><%=current_user.name%> is logged in right now</h2>
 
 <!-- currently a list of all users -->
+
+
+
 <h3>possible friends</h3>
 <div>
   <% @users.each do |user|%>
+    
     <%= user.name %>
+
     <%= link_to "request friend", friendship_requests_path(:friendee_id => user.id), :method=>:post %>
   <% end %>
+
+
 </div>
 
 
@@ -16,7 +23,7 @@
   <div>
     <% current_user.friendship_requests.each do |request| %>
 
-    <%= request.friendee.name %>
+    <%= request.friendee.name%>
     <% end %>
   </div>
 
@@ -40,7 +47,14 @@
 
 
 
+<h1>array of all the requester TESTTEST</h1>
+<%= current_user.requesters %>
 
+<h1>array of all the requestee TESTTEST</h1>
+<%= current_user.requestees %>
+
+<h1>possible friends</h1>
+<%= current_user.possible_friends %>
 
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>
