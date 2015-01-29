@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-# inverse_of is used so that the requestee has a way to call on the list of users sending the friend request
+
   has_many :friendship_requests
   has_many :pendingfriends, through: :friendship_requests
   has_many :request_made, class_name: FriendshipRequest
@@ -23,9 +23,10 @@ class User < ActiveRecord::Base
   def accept_friend(user)
     self.friendships.create({:friendee_id => user.id, :user_id=> user.id})
   end
+
 # this defines all the friends as an array when called on the user class
 
-  def friends()
+  def friends
     @friends_arr = []
     current_user = User.where(id: self.id)
     friends = current_user[0].friendships
@@ -38,7 +39,7 @@ class User < ActiveRecord::Base
 
 # this defines people that i have sent requests to so they cannot be possible friends anymore
 
-  def requesters()
+  def requesters
     @requesters_arr = []
     current_user= User.where(id: self.id)
     requesters = current_user[0].friendship_requests
@@ -47,12 +48,13 @@ class User < ActiveRecord::Base
     end
 
     @requesters_arr
-    # binding.pry
+    
 
   end  
+
 # this defines people that have sent requests to me so they cannot be possible friends anymore
 
-  def requestees()
+  def requestees
     @requestees_arr = []
     current_user= User.where(id: self.id)
     requestees = current_user[0].request_received
@@ -62,17 +64,19 @@ class User < ActiveRecord::Base
     end
 
     @requestees_arr
-    # binding.pry
+    
 
   end
 
+# this defines all possible friends
+
+  def possible_friends
+    User.all - self.requesters - self.requestees-self.friends
+  end 
 
 
-  # has_many :inverse_friendships, class_name => "Friendship", :ftoreign_key =>"friendee_id"
-  # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   attr_reader :password
-  # not sure attr_reader belongs here
 
   def password=(unencrypted_password)
     unless unencrypted_password.empty?
