@@ -47,7 +47,11 @@
 
 
 
+<h1>This is the array of all the requester TESTTEST</h1>
+<%= current_user.requesters %>
 
+<h1>This is the array of all the requestee TESTTEST</h1>
+<%= current_user.requestees %>
 
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>
