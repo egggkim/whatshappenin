@@ -23,12 +23,48 @@ class User < ActiveRecord::Base
   def accept_friend(user)
     self.friendships.create({:friendee_id => user.id, :user_id=> user.id})
   end
+# this defines all the friends as an array when called on the user class
 
-  # def nprequests
-  #   nprequests = friendship_requests.where({ :$or => [ { :user_id => self.id }, { :friendee_id => self.id } ] })
-  # end
+  def friends()
+    @friends_arr = []
+    current_user = User.where(id: self.id)
+    friends = current_user[0].friendships
+    friends.each do |f|
+      @friends_arr.push(f.friendee)
+    end
+   
+    @friends_arr
+  end
 
+# this defines people that i have sent requests to so they cannot be possible friends anymore
 
+  def requesters()
+    @requesters_arr = []
+    current_user= User.where(id: self.id)
+    requesters = current_user[0].friendship_requests
+    requesters.each do |r|
+      @requesters_arr.push(r.friendee)
+    end
+
+    @requesters_arr
+    # binding.pry
+
+  end  
+# this defines people that have sent requests to me so they cannot be possible friends anymore
+
+  def requestees()
+    @requestees_arr = []
+    current_user= User.where(id: self.id)
+    requestees = current_user[0].request_received
+
+    requestees.each do |r|
+      @requestees_arr.push(r.user)
+    end
+
+    @requestees_arr
+    # binding.pry
+
+  end
 
 
 
