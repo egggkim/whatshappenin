@@ -24,10 +24,11 @@ class User < ActiveRecord::Base
     self.friendships.create({:friendee_id => user.id, :user_id=> user.id})
   end
 
-#   def find_inverse_friendship
-# # create a method that will query the database and return the inverse of the same friendship so it is possible to delete both records at once
-#     @inverse_friendship = friendships.where(user_id:)
-#   end
+  # def nprequests
+  #   nprequests = friendship_requests.where({ :$or => [ { :user_id => self.id }, { :friendee_id => self.id } ] })
+  # end
+
+
 
 
 
