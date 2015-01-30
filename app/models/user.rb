@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
 
 # this defines all the friends as an array when called on the user class
 
+# HAVE TESTS to test if self.friendship could work.....
+
+
   def friends
     @friends_arr = []
     current_user = User.where(id: self.id)
@@ -71,8 +74,16 @@ class User < ActiveRecord::Base
 # this defines all possible friends
 
   def possible_friends
-    User.all - self.requesters - self.requestees-self.friends
+    User.all - self.requesters - self.requestees-self.friends-User.where(id:self.id)
   end 
+
+  def as_json(option={})
+  # pass in the array of attribute you dont want to show
+  # :methods=>[:friends]
+    super(:except => [:password_digest, :created_at, :updated_at, :avatar, :oid], :include=>[:friendships])
+    # can replace except with only which is inverse
+    # the method is defined top and it will be returned in the json
+  end
 
 
 

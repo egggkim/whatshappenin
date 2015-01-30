@@ -1,21 +1,22 @@
 
-<h2><%=current_user.name%> is logged in right now</h2>
-
 <!-- currently a list of all users -->
-
-
-
-<h3>possible friends</h3>
+<h2>possible friends</h2>
 <div>
-  <% @users.each do |user|%>
-    
-    <%= user.name %>
 
-    <%= link_to "request friend", friendship_requests_path(:friendee_id => user.id), :method=>:post %>
+  <% current_user.possible_friends.each do |f|%>
+    <%= image_tag f.avatar.url(:thumb) %>
+    <%= f.name %>
+    <%= link_to "request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %>
+
+    
   <% end %>
 
-
 </div>
+
+
+
+
+
 
 
 <!-- creates a friendship_request -->
@@ -23,7 +24,10 @@
   <div>
     <% current_user.friendship_requests.each do |request| %>
 
+    <%= image_tag request.friendee.avatar.url(:thumb) %>
     <%= request.friendee.name%>
+    <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+
     <% end %>
   </div>
 
@@ -31,8 +35,11 @@
 <h2>these users sent requests to you</h2>
   <div>
       <% current_user.request_received.each do |request| %>
+        <%= image_tag request.user.avatar.url(:thumb) %>
         <%= request.user.name %>
         <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
+        <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
+
       <% end %>
   </div>
 
@@ -40,21 +47,12 @@
 <h2>here are your friends</h2>
   <div>
     <% current_user.friendships.each do |friendship| %>
-    <h2><%= friendship.friendee.name%></h2>
+    <%= image_tag friendship.friendee.avatar.url(:thumb) %>
+    <%= friendship.friendee.name%>
     <%= link_to "delete friend", friendship, :method => :delete %>
   <% end %>
 </div>
 
-
-
-<h1>array of all the requester TESTTEST</h1>
-<%= current_user.requesters %>
-
-<h1>array of all the requestee TESTTEST</h1>
-<%= current_user.requestees %>
-
-<h1>possible friends</h1>
-<%= current_user.possible_friends %>
 
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>

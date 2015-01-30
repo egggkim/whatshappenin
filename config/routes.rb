@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get '/contact' => 'welcome#contact'
   get '/developers' => 'welcome#developers'
 
+  namespace :api do
+    resources :users,only: [:index], defaults: {format:"json"}
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
