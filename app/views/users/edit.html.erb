@@ -10,12 +10,12 @@
 <!-- needs to be centered on page -->
   <%= bootstrap_form_for @user do |f| %>
 
-    <%= f.text_field :name, label: "Name:" %>
-    <%= f.email_field :email, label: "Email:" %>
-    <%= f.password_field :password, label: "Change password:" %>
+    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+    <%= f.password_field :password, label: "Change password:", class: "form-font" %>
 
     <br>
-    <%= f.text_field :city, label: "Your city:" %>
+    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
 
     <%= f.file_field :avatar %>
 
@@ -23,5 +23,5 @@
   <% end %>
   <br>
 
-  <%= link_to "Cancel", users_path(@user)  %>
+  <%= link_to "Cancel", users_path(@user), class: "form-font"  %>
 </div>

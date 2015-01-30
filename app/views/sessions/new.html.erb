@@ -10,8 +10,8 @@
   <div class='col-md-4'>
     <h1>Log In</h1>
     <%= bootstrap_form_for :login do |f| %>
-      <%= f.text_field :email, label: "Email:" %>
-      <%= f.password_field :password, label: "Password:" %>
+      <%= f.text_field :email, label: "Email:", class: "form-font" %>
+      <%= f.password_field :password, label: "Password:", class: "form-font" %>
 
       <%= f.submit 'Log In' %>
     <% end %>
