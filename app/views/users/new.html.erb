@@ -8,17 +8,17 @@
   <h1>Sign up</h1>
 <!-- needs to be centered on page -->
   <%= bootstrap_form_for @user do |f| %>
-    <%= f.text_field :name, label: "Name:" %>
-    <%= f.email_field :email, label: "Email:" %>
-    <%= f.password_field :password, label: "Password:" %>
-    <%= f.password_field :password_confirmation, label: "Password Confirmation:" %>
-    <%= f.text_field :city, label: "Your city:" %>
+    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
     <%= f.file_field :avatar %>
 
     <%= f.submit "Sign me up!" %>
   <% end %>
   <br>
-   <%= link_to "Cancel", root_path  %>
+   <%= link_to "Cancel", root_path, class: "form-font"  %>
 </div>
 
 

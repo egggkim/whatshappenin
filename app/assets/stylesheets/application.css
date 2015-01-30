@@ -18,6 +18,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body{
+  background-color: #D7EBFA;
+}
+
+.form-font {
+  font-size: 20px;
+}
+
+.nav-pills {
+  font-size: 20px;
+}
+
+#user-name{
+  padding: 10px;
+  color: #D6A95C;
+}
+
 #h.map-container 
 { 
   width: 90%;
