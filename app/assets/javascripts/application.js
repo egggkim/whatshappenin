@@ -80,53 +80,58 @@ function initialize() {
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
     infowindow.open(map, marker);
 
+    var location = place.formatted_address;
+    var longitude = place.geometry.location.D;
+    var latitude = place.geometry.location.k;
+    var types = place.types[0];
+    console.log(longitude);
 
 /// / Instagram + Twitter requests
 
-    // D is the longitude
-    console.log(place.geometry.location.D);
-    // k is the latitude
-    console.log(place.geometry.location.k);
+    // // D is the longitude
+    // console.log(place.geometry.location.D);
+    // // k is the latitude
+    // console.log(place.geometry.location.k);
 
-    var lng = place.geometry.location.D;
-    var lat = place.geometry.location.k;
-    console.log(lng);
-    console.log(lat);
+    // var lng = place.geometry.location.D;
+    // var lat = place.geometry.location.k;
+    // console.log(lng);
+    // console.log(lat);
 
-     var request = $.ajax({
-      type: "GET",
-      dataType: 'jsonp',
-      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
-    });
+ //     var request = $.ajax({
+ //      type: "GET",
+ //      dataType: 'jsonp',
+ //      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
+ //    });
 
-     request.done(function (data) {
-      instaData = data;
-      console.log(data)
-      dataCount = instaData.data.length;
+ //     request.done(function (data) {
+ //      instaData = data;
+ //      console.log(data)
+ //      dataCount = instaData.data.length;
 
-      $('#picture-feed').empty();
+ //      $('#picture-feed').empty();
 
-      for(i=0; i<dataCount; i++) {
-        postPixUrl = instaData.data[i].images.thumbnail.url;
-          console.log(postPixUrl);
-        var instaDiv = '<li>';
-        instaDiv += '<img src="' + postPixUrl + '" width="150px" height="150px">';
-        $('#picture-feed').append(instaDiv);
+ //      for(i=0; i<dataCount; i++) {
+ //        postPixUrl = instaData.data[i].images.thumbnail.url;
+ //          console.log(postPixUrl);
+ //        var instaDiv = '<li>';
+ //        instaDiv += '<img src="' + postPixUrl + '" width="150px" height="150px">';
+ //        $('#picture-feed').append(instaDiv);
 
 
-      }
-      console.log(dataCount);
+ //      }
+ //      console.log(dataCount);
 
-      var request = $.ajax({
-      type: "GET",
-      dataType: 'jsonp',
-      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
-    });
+ //      var request = $.ajax({
+ //      type: "GET",
+ //      dataType: 'jsonp',
+ //      url: "https://api.instagram.com/v1/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000&access_token=8240865.1fb234f.a791d5203eda498586fb802a698d3c02"
+ //    });
   
-      });
+ //      });
 
-      // end of Instagram request
-        /////////////////// 
+ //      // end of Instagram request
+ //        /////////////////// 
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.

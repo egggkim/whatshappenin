@@ -1,0 +1,13 @@
+<h1>Add a checkin!</h1>
+
+<div class="row map-container">
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map-canvas" class="centered"></div>
+</div>
+
+<%= bootstrap_form_for @checkin do |f| %>
+  <%= f.text_area :status, label: "What's happenin?" %>
+
+  <%= f.submit "Check me in!" %>
+<% end %>
+<%= link_to "Cancel", root_path %>

@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, through: :friendships
 
+  has_and_belongs_to_many :checkins
+
 
   def add_friend(friendee)
     self.friendships.create({:friendee_id => friendee.id, :user_id => self.id})
@@ -84,7 +86,6 @@ class User < ActiveRecord::Base
     # can replace except with only which is inverse
     # the method is defined top and it will be returned in the json
   end
-
 
 
   # mount_uplader is used for carrierwave

@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   resources :users
   resources :friendships, only:[:create, :destroy]
   resources :friendship_requests, only:[:create, :destroy]
+  resources :checkins, only: [:index, :new, :create, :destroy]
+
   get '/signup' => 'users#new'
   get '/users/show' => 'users#show'
-
-  
   
   # user sessions routes
   get '/login' => 'sessions#new'

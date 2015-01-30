@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126004653) do
+ActiveRecord::Schema.define(version: 20150130195527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: true do |t|
+    t.string   "user"
+    t.string   "name"
+    t.string   "formatted_address"
+    t.string   "longitude"
+    t.string   "latitude"
+    t.string   "types"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "checkins_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "checkin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendship_requests", force: true do |t|
     t.integer  "user_id"
