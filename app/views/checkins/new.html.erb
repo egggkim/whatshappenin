@@ -9,6 +9,7 @@
 
 
 <%= bootstrap_form_for @checkin do |f| %>
+  <%= f.file_field :photo, label: "Photo:" %>
   <%= f.text_area :status, label: "What's happenin?" %>
   <div class='hide'>
     <%= f.text_area :name, :id => 'name' %>

@@ -27,7 +27,7 @@ class CheckinsController < ApplicationController
 
   private
   def checkin_params
-    params.require(:checkin).permit(:name, :formatted_address, :status, :longitude, :latitude, :types)
+    params.require(:checkin).permit(:name, :formatted_address, :status, :longitude, :latitude, :types, :photo)
   end
   
 end

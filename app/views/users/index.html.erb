@@ -55,7 +55,18 @@
 
 
 <h2>These are your previous checkins</h2>
-  <%= current_user.checkins.name %>
+  <!-- <%= current_user.checkins.inspect %> -->
+  <ul>
+    <%= current_user.checkins.each do |checkin| %>
+      <% if checkin.name %>
+        <li><%= checkin.name %></li>
+      <% end %>
+      <li><%= image_tag checkin.photo.url(:photo) %></li>
+      <li><%= checkin.status %></li>
+      <li><%= checkin.created_at %></li>
+      <!-- format the time -->
+    <% end %>
+  </ul>
 
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>
