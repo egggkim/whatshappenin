@@ -18,6 +18,10 @@ class CheckinsController < ApplicationController
     end
   end
 
+  def show
+    @checkin = Checkin.find(params[:id])
+  end
+
   def destroy
     @checkin = Checkin.find(params[:id])
     if @checkin.destroy
