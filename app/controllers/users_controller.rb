@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if params[:query]
+      # [:query] defined in view as filter input field
+      @users = User.where(name:/#{params[:query]}/i)
+    else
+      @users = User.all
+    end 
   end
 
   def new

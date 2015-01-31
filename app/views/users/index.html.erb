@@ -2,6 +2,12 @@
 <!-- currently a list of all users -->
 <h2>possible friends</h2>
 <div>
+  <div>
+      <%= form_tag("/users", method: "get") do %>
+        <%= text_field_tag(:query) %>
+        <%= submit_tag("Find a friend") %>
+      <% end %>
+    </div>  
 
   <% current_user.possible_friends.each do |f|%>
     <%= image_tag f.avatar.url(:thumb) %>

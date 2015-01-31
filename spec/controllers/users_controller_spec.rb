@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 
-# ============== index action tests ==============
+# ============== users index action tests ==============
   describe "GET #index" do
     it "returns http success code for users index action" do
       get :index
@@ -15,7 +15,7 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
-# ============== show action tests ==============
+# ============== users show action tests ==============
   describe "GET #show" do
   
     it "returns http success code for users show action" do
@@ -37,7 +37,7 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
-# ============== edit action tests ==============
+# ============== users edit action tests ==============
   describe "GET #edit" do
     it "returns http success code for users edit action" do
       user = FactoryGirl.create(:user, :email => "h3@h.com")
@@ -47,7 +47,7 @@ RSpec.describe UsersController, :type => :controller do
     end
   end
 
-# # ============== destroy action tests ==============
+# # ============== users destroy action tests ==============
   describe "GET #destroy" do
     it "returns http success code for users destroy action" do
       user = FactoryGirl.create(:user, :email => "h4@h.com")
