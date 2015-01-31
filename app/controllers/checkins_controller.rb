@@ -8,7 +8,9 @@ class CheckinsController < ApplicationController
   end
 
   def create
-    @checkin = current_user.checkins.build({ :user_id => current_user.id })
+    @checkin = Checkin.new(checkin_params)
+    current_user.checkins << @checkin
+
     if @checkin.save
       redirect_to users_path
     else
@@ -23,5 +25,9 @@ class CheckinsController < ApplicationController
     end
   end
 
+  private
+  def checkin_params
+    params.require(:checkin).permit(:name, :formatted_address, :status, :longitude, :latitude, :types)
+  end
   
 end

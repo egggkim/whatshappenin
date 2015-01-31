@@ -115,3 +115,7 @@ body{
       }
       
 
+/*#name, #longitude, #latitude, #address, #type {
+  display: none;
+}*/
+

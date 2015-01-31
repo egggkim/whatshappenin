@@ -10,10 +10,13 @@
 
 <%= bootstrap_form_for @checkin do |f| %>
   <%= f.text_area :status, label: "What's happenin?" %>
-  <%= f.text_area :longitude, :id => 'longitude' %>
-  <%= f.text_area :latitude, :id => 'latitude' %>
-  <%= f.text_area :formatted_address, :id => 'address' %>
-  <%= f.text_area :types, :id => 'type' %>
+  <div class='hide'>
+    <%= f.text_area :name, :id => 'name' %>
+    <%= f.text_area :longitude, :id => 'longitude' %>
+    <%= f.text_area :latitude, :id => 'latitude'  %>
+    <%= f.text_area :formatted_address, :id => 'address' %>
+    <%= f.text_area :types, :id => 'type' %>
+  </div>
   <%= f.submit "Check me in!" %>
 <% end %>
 <%= link_to "Cancel", root_path %>

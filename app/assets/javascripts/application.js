@@ -88,10 +88,12 @@ function initialize() {
     // k is the latitude
     console.log(place.geometry.location.k);
 
+    var name = place.name;
     var lng = place.geometry.location.D;
     var lat = place.geometry.location.k;
     var address = place.formatted_address;
     var types = place.types[0];
+    console.log(lng);
     console.log(lng);
     console.log(lat);
 
@@ -106,6 +108,7 @@ function initialize() {
       // console.log(data)
       dataCount = instaData.data.length;
 
+      $('#name').text(name);
       $('#longitude').text(lng);
       $('#latitude').text(lat);
       $('#address').text(address);

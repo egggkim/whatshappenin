@@ -34,11 +34,11 @@
 <!-- shows who have sent requests to the current_user -->
 <h2>these users sent requests to you</h2>
   <div>
-      <% current_user.request_received.each do |request| %>
-        <%= image_tag request.user.avatar.url(:thumb) %>
-        <%= request.user.name %>
-        <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
-        <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
+    <% current_user.request_received.each do |request| %>
+      <%= image_tag request.user.avatar.url(:thumb) %>
+      <%= request.user.name %>
+      <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
+      <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
 
       <% end %>
   </div>
