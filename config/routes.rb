@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :friendship_requests, only:[:create, :destroy]
   get '/signup' => 'users#new'
   get '/users/show' => 'users#show'
+  # post 'users/create'  => 'users#create'
 
   
   

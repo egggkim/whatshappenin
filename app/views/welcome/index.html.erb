@@ -1,18 +1,130 @@
 
 
 	<! -- ********** HEADER ********** -->
+
+
 	<div id="h">
 		<div class="container">
 			<div class="row">
-					<% if !logged_in? %>
-	          <button class="btn btn-lg btn-info btn-register"><%= link_to "Sign Up", new_user_path %></button>
+					<div class="flash-notice">
+						<% if flash[:notice] %>
+	  						<%= flash[:notice] %>
+	  					<%end%>
+	  			</div>
+						<% if !logged_in? %>
 	          
-	          <button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button>
-	        <% end %>
+	          
+	          <!-- <button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button> -->
+
+
+	          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
+
+	          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+
+<!-- Log In Modal -->
+
+						<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-med">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						       
+						      </div>
+						      <div class="modal-body">
+						       
+						      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
+								      <%= f.text_field :email, label: "Email:", class: "form-font" %>
+								      <%= f.password_field :password, label: "Password:", class: "form-font" %>
+
+								      <%= f.submit 'Log In' %>
+							    <% end %>
+
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div> <!-- end Log In Modal -->
+
+				<!-- New User Modal  -->
+
+						<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-med">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        
+						      </div>
+						      <div class="modal-body">
+						       
+						      	<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
+									    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+									    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+									    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+									    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+									    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+									    <%= f.file_field :avatar %>
+
+									    <%= f.submit "Sign me up!" %>
+							  		<% end %>
+							   
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+				<!-- End New User Modal -->
+
+
+
+
+	          
+	        <% end %> <!--- end !logged_in? -->
 
 
           <% if logged_in? %>
-            <li><button class="btn btn-lg btn-info btn-register"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
+            <li><button class="btn btn-lg btn-info btn-register login-btn"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
+
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+
+            <!-- Start Edit User Modal  -->
+
+						<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog modal-med">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+								      </div>
+								      <div class="modal-body">
+								       
+								      	<%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
+											    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+											    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+											    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+											    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+											    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+											    <%= f.file_field :avatar %>
+
+											    <%= f.submit "Save Changes!" %>
+									  		<% end %>
+									   
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+
+						<!-- End Edit User Modal -->
+
+
           <% end %>
 
 			    <div class="col-md-10 col-md-offset-1 mt">
@@ -20,6 +132,10 @@
 			    </div>
 
 			</div>
+
+			
+
+
 
 
         <!-- GOOGLE MAP -->
