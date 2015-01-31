@@ -22,6 +22,43 @@ body{
   background-color: #B6CFFA;
 }
 
+.login-btn{
+  position: relative;
+  float: right;
+  margin-top: 16px;
+  left: -30px;
+  color: teal;
+  text-decoration: none;
+  
+}
+
+.edit-btn{
+  position: relative;
+  float: right;
+  margin-top: -3px;
+  left: -30px;
+  color: teal;
+  text-decoration: none;
+
+}
+
+.edit-btn:hover{
+  text-decoration: underline;
+  color: teal;
+  background-color: white;
+}
+
+.login-btn:hover{
+  text-decoration: underline;
+  color: teal;
+  background-color: white;
+}
+
+.flash-notice{
+  color: red;
+  font-size: 35px;
+}
+
 .form-font{
   font-size: 20px;
 }

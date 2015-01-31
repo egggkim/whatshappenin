@@ -6,7 +6,41 @@
 
 <!-- NEED TO FORMAT THIS PAGE -->
 
-<%= image_tag @user.avatar.url, size: "200x200" %>
+<li><button class="btn btn-lg btn-info btn-register login-btn"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
+
+    <%= image_tag @user.avatar.url, size: "200x200" %>
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+<!-- Start Edit User Modal  -->
+
+            <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-med">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+                      </div>
+                      <div class="modal-body">
+                       
+                        <%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
+                          <%= f.text_field :name, label: "Name:", class: "form-font" %>
+                          <%= f.email_field :email, label: "Email:", class: "form-font" %>
+                          <%= f.password_field :password, label: "Password:", class: "form-font" %>
+                          <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+                          <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+                          <%= f.file_field :avatar %>
+
+                          <%= f.submit "Save Changes!" %>
+                        <% end %>
+                     
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            <!-- End Edit User Modal -->
 
 <!-- if/else current user sees different view -->
 
