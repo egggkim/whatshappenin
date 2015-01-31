@@ -57,7 +57,7 @@
 <h2>These are your previous checkins</h2>
   <!-- <%= current_user.checkins.inspect %> -->
   <ul>
-    <%= current_user.checkins.each do |checkin| %>
+    <% current_user.checkins.each do |checkin| %>
       <% if checkin.name %>
         <li><%= checkin.name %></li>
       <% end %>

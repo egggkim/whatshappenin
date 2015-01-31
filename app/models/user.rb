@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   def as_json(option={})
   # pass in the array of attribute you dont want to show
   # :methods=>[:friends]
-    super(:except => [:password_digest, :created_at, :updated_at, :avatar, :oid], :include=>[:friendships])
+    super(:except => [:password_digest, :created_at, :updated_at, :avatar, :oid], :include=>[:friendships, :checkins])
     # can replace except with only which is inverse
     # the method is defined top and it will be returned in the json
   end
