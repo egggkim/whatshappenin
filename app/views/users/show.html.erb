@@ -1,15 +1,15 @@
+
+
 <h1>More about <%= @user.name %></h1>
 
 <!-- User avatar -->
-<%= @user.checkins.name %>
 <!-- Friends -->
 
 <!-- NEED TO FORMAT THIS PAGE -->
 
-<li><button class="btn btn-lg btn-info btn-register login-btn"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
-
     <%= image_tag @user.avatar.url, size: "200x200" %>
             <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+
 <!-- Start Edit User Modal  -->
 
             <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -41,6 +41,46 @@
                 </div>
 
             <!-- End Edit User Modal -->
+
+            <!-- Start Checkins Modal This doesn't work moved to checkins/new view -->
+
+            <div class="modal fade" id="checkInUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-med">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Check In</h4>
+                      </div>
+                      <div class="modal-body">
+                       
+                        <div class="row map-container">
+                          <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name">
+                          <div id="map-canvas" class="centered"></div>
+                        </div>
+
+
+                        <%= bootstrap_form_for :checkin, url: {:controller=> 'checkins', :action => "create"}  do |f| %>
+                          <%= f.file_field :photo, label: "Photo:" %>
+                          <%= f.text_area :status, label: "What's happenin?" %>
+                          <div class='hide'>
+                            <%= f.text_area :name, :id => 'name' %>
+                            <%= f.text_area :longitude, :id => 'longitude' %>
+                            <%= f.text_area :latitude, :id => 'latitude'  %>
+                            <%= f.text_area :formatted_address, :id => 'address' %>
+                            <%= f.text_area :types, :id => 'type' %>
+                          </div>
+                          <%= f.submit "Check me in!" %>
+                        <% end %>
+                        <%= link_to "Cancel", root_path %>
+
+                     
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 <!-- if/else current user sees different view -->
 

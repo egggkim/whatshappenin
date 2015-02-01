@@ -2,7 +2,6 @@
 
 	<! -- ********** HEADER ********** -->
 
-
 	<div id="h">
 		<div class="container">
 			<div class="row">
@@ -14,7 +13,7 @@
 						<% if !logged_in? %>
 	          
 	          
-	          <!-- <button class="btn btn-lg btn-info btn-register"><%= link_to "Log In", login_path %></button> -->
+	          
 
 
 	          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
@@ -88,9 +87,13 @@
 
 
           <% if logged_in? %>
-            <li><button class="btn btn-lg btn-info btn-register login-btn"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
+     
 
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+            <button type="button" class="edit-btn  btn btn-lg btn-info btn-register  " data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+
+            <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Friends", users_path%></button>
+
+            <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
 
             <!-- Start Edit User Modal  -->
 
@@ -124,8 +127,9 @@
 
 						<!-- End Edit User Modal -->
 
+						
 
-          <% end %>
+          <% end %> <!-- End logged_in? -->
 
 			    <div class="col-md-10 col-md-offset-1 mt">
 			    	<h1 class="mb">WHAT'S HAPPENIN?</h1>
@@ -140,11 +144,11 @@
 
         <!-- GOOGLE MAP -->
       <div class="row map-container">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name.">
           <div id="map-canvas" class="centered"></div>
       </div>
 
-      <div class="row instaDiv">
+      <div class="row instaDiv">	
 
       <ul id="picture-feed">  
         
