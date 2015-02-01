@@ -14,60 +14,6 @@
 </div>
 
 
-
-
-
-
-
-<!-- creates a friendship_request -->
-<h2>you sent requests to these users</h2>
-  <div>
-    <% current_user.friendship_requests.each do |request| %>
-
-    <%= image_tag request.friendee.avatar.url(:thumb) %>
-    <%= request.friendee.name%>
-    <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
-
-    <% end %>
-  </div>
-
-<!-- shows who have sent requests to the current_user -->
-<h2>these users sent requests to you</h2>
-  <div>
-    <% current_user.request_received.each do |request| %>
-      <%= image_tag request.user.avatar.url(:thumb) %>
-      <%= request.user.name %>
-      <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
-      <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
-
-      <% end %>
-  </div>
-
-
-<h2>here are your friends</h2>
-  <div>
-    <% current_user.friendships.each do |friendship| %>
-    <%= image_tag friendship.friendee.avatar.url(:thumb) %>
-    <%= friendship.friendee.name%>
-    <%= link_to "delete friend", friendship, :method => :delete %>
-  <% end %>
-</div>
-
-
-<h2>These are your previous checkins</h2>
-  <!-- <%= current_user.checkins.inspect %> -->
-  <ul>
-    <% current_user.checkins.each do |checkin| %>
-      <% if checkin.name %>
-        <li><%= checkin.name %></li>
-      <% end %>
-      <li><%= image_tag checkin.photo.url(:photo) %></li>
-      <li><%= checkin.status %></li>
-      <li><%= checkin.created_at %></li>
-      <!-- format the time -->
-    <% end %>
-  </ul>
-
 <% if logged_in? %>
   <%= link_to "Log Out", logout_path, method: :delete %>
 <% end %>
