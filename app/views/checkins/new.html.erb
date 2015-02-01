@@ -1,23 +1,35 @@
 <script type="javascripts/checkins.js"></script>
 
-<h1>Add a checkin!</h1>
 
-<div class="row map-container">
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map-canvas" class="centered"></div>
+
+<div class='col-md-4'>
 </div>
 
-
-<%= bootstrap_form_for @checkin do |f| %>
-  <%= f.file_field :photo, label: "Photo:" %>
-  <%= f.text_area :status, label: "What's happenin?" %>
-  <div class='hide'>
-    <%= f.text_area :name, :id => 'name' %>
-    <%= f.text_area :longitude, :id => 'longitude' %>
-    <%= f.text_area :latitude, :id => 'latitude'  %>
-    <%= f.text_area :formatted_address, :id => 'address' %>
-    <%= f.text_area :types, :id => 'type' %>
-  </div>
-  <%= f.submit "Check me in!" %>
-<% end %>
-<%= link_to "Cancel", root_path %>
+<div class="row map-container">
+    
+    <div class='col-md-4'>
+    <h1>Add a Checkin!</h1>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name">
+      <div id="map-canvas" class="centered"></div>
+    </div>
+  
+</div>
+<br>
+<!-- Empty div used to center form -->
+<div class='col-md-4'>
+</div>
+<div class='col-md-4'>
+    <%= bootstrap_form_for @checkin do |f| %>
+      <%= f.file_field :photo, label: "Photo:" %>
+      <%= f.text_area :status, label: "What's happenin?", class: "form-font", rows: 3 %>
+      <div class='hide'>
+        <%= f.text_area :name, :id => 'name', class: "form-font" %>
+        <%= f.text_area :longitude, :id => 'longitude' %>
+        <%= f.text_area :latitude, :id => 'latitude'  %>
+        <%= f.text_area :formatted_address, :id => 'address' %>
+        <%= f.text_area :types, :id => 'type' %>
+      </div>
+      <%= f.submit "Check me in!" %>
+    <% end %>
+    <%= link_to "Cancel", root_path %>
+</div>

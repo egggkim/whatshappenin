@@ -13978,7 +13978,7 @@ function initialize() {
     zoom: 13
   };
 
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
+  var map = new google.maps.Map(document.getElementsById('map-canvas'),
     mapOptions);
 
  var input = /** @type {HTMLInputElement} */(

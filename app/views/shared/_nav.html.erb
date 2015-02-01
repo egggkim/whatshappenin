@@ -4,6 +4,10 @@
       <li id="login-name">Logged in as: <%= current_user.name %></li>
 
       <li><%= link_to "Create New Check In", new_checkin_path %></li>
+      <li><%= link_to "Home", root_path %></li>
+      <%if logged_in? %>
+        <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+      <% end %>
       <!-- Add link to create new check in -->
       
       
