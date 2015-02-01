@@ -1,11 +1,14 @@
 
+<h1>More about <%= current_user.name %></h1>
 
-<h1>More about <%= @user.name %></h1>
 
-<!-- User avatar -->
 <!-- Friends -->
 
 <!-- NEED TO FORMAT THIS PAGE -->
+
+
+<li><button class="btn btn-lg btn-info btn-register login-btn"><%= link_to "Log Out", logout_path, method: :delete %></button></li>
+<!-- User avatar -->
 
     <%= image_tag @user.avatar.url, size: "200x200" %>
             <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
@@ -41,6 +44,7 @@
                 </div>
 
             <!-- End Edit User Modal -->
+
 
             <!-- Start Checkins Modal This doesn't work moved to checkins/new view -->
 
@@ -81,6 +85,55 @@
                     </div>
                   </div>
                 </div>
+
+<!-- ALL current user's friends -->
+<h2>Your friends</h2>
+<div>
+    <% current_user.friendships.each do |friendship| %>
+      <%= image_tag friendship.friendee.avatar.url(:thumb) %>
+      <%= friendship.friendee.name%>
+      <%= link_to "delete friend", friendship, :method => :delete %>
+  <% end %>
+</div>
+
+<!-- shows who have sent requests to the current_user -->
+<h2>Pending Friends</h2>
+  <div>
+    <% current_user.request_received.each do |request| %>
+      <%= image_tag request.user.avatar.url(:thumb) %>
+      <%= request.user.name %>
+      <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
+      <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
+
+      <% end %>
+  </div>
+<!-- shows who you have sent requests to -->
+<h2>Requested Friends</h2>
+  <div>
+    <% current_user.friendship_requests.each do |request| %>
+
+    <%= image_tag request.friendee.avatar.url(:thumb) %>
+    <%= request.friendee.name%>
+    <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+
+    <% end %>
+  </div>
+
+
+<!-- All current users's checkins -->
+<h2>Places you have been</h2>
+  <!-- <%= current_user.checkins.inspect %> -->
+  <ul>
+    <% current_user.checkins.each do |checkin| %>
+      <li><%= checkin.name %></li>
+      <li><%= checkin.created_at %></li>
+      <li><%= checkin.status %></li>
+      <li><%= image_tag checkin.photo.url(:photo) %></li>
+
+      <!-- format the time -->
+    <% end %>
+  </ul>
+
 
 <!-- if/else current user sees different view -->
 

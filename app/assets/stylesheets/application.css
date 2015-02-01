@@ -21,6 +21,9 @@
 body{
   background-color: #B6CFFA;
 }
+li {
+list-style:none ;
+}
 
 .login-btn{
   position: relative;

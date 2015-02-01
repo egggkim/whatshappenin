@@ -93,7 +93,10 @@
 
             <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Friends", users_path%></button>
 
+
             <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
 
             <!-- Start Edit User Modal  -->
 
@@ -163,36 +166,18 @@
 	<div id="w">
 		<div class="row nopadding">
 			<div class="col-md-5 col-md-offset-1 mt">
-				<h4>Handsome Analytics</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p class="mt"><button class="btn btn-info btn-theme">Sign Up Now | 14 Days Free</button></p>
+				<h4>What's Happenin?</h4>
+				<p>Takes the OMO out of FOMO</p>
+				<p>Don't know what to do on a Friday night?</p>
+				<p>Check out what what everyone else in the area is doing</p>
+				<p>What’s Happenin’ is an application that allows users to see what places are popular based on social media in real time.</p>				
 			</div>
 			
 			<div class="col-md-6 pull-right">
-				<img src="assets/img/shot01.png" class="img-responsive alignright" alt="" data-effect="slide-right">
+				<%=image_tag('party.jpg', width:475, height:350)%> 
 			</div>
-		</div><! --/row -->
-	</div><! --/container -->
-	
-
-	<! -- ********** BLUE SECTION - PICTON ********** -->
-	<div id="picton">
-		<div class="row nopadding">
-			<div class="col-md-6 pull-left">
-				<img src="assets/img/shot02.png" class="img-responsive alignleft" alt="" data-effect="slide-left">
-			</div>
-			<div class="col-md-5 mt">
-				<h4>Multiple Templates Options</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p class="mt"><button class="btn btn-white btn-theme">Sign Up Now | 14 Days Free</button></p>
-			</div>
-	
-		</div><! --row -->
-	</div><! --/Picton -->
+		</div>
+	</div>
 	
 	
 	<! -- ********** BLUE SECTION - CURIOUS ********** -->
@@ -207,7 +192,7 @@
 			</div>
 			
 			<div class="col-md-6 pull-right">
-				<img src="assets/img/shot03.png" class="img-responsive alignright" alt="" data-effect="slide-right">
+	
 			</div>
 		</div><! --/row -->
 	</div><! --/curious -->
@@ -220,12 +205,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 centered">
-					<h4 class="mb">Lorem ipsum.</h4>
-					<form role="form" action="register.php" method="post" enctype="plain"> 
-	    				<input type="email" name="email" class="subscribe-input" placeholder="Enter your e-mail address..." required>
-						<button class='btn btn-lg btn-info btn-sub subscribe-submit' type="submit">Yes, Please</button>
-					</form>
-				
+					<h4 class="mb">Get to know us.</h4>
+					<ul>
+						<li><%= link_to "About Us", about_path %></li>
+						<li><%= link_to "Contact Us", contact_path%></li>
+						<li><%= link_to "Developers", developers_path%></li>
+					</ul>
 				</div>
 
 			</div><! --/row -->
