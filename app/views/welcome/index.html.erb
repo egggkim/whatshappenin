@@ -10,9 +10,9 @@
 
 			<!-- ============== USER SIGN UP AND LOG IN ============== -->
 			<% if !logged_in? %>
-        <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
+        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
 
-        <button type="button" class="btn btn-info btn-register btn-lg signup-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
 
 				<!-- ============== Log In Modal ============== -->
 				<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -22,12 +22,12 @@
 				      	<h2>Log In To What's Happenin'</h2>
 				      </div>
 
-				      <div class="modal-body"> 
+				      <div class="modal-body form-align"> 
 				      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
 						      <%= f.text_field :email, label: "Email:", class: "form-font" %>
 						      <%= f.password_field :password, label: "Password:", class: "form-font" %>
 
-						      <%= f.submit 'Log In' %>
+						      <%= f.submit 'Log In', class: "btn btn-info" %>
 					    <% end %>
 				      </div>
 
@@ -38,7 +38,7 @@
 				  </div> <!-- end modal dialog div -->
 				</div> <!-- end log in modal -->
 
-				<!-- ============== New User Modal ============== -->
+				<!-- ============== Sign Up Modal ============== -->
 				<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog modal-med">
 				    <div class="modal-content">
@@ -46,7 +46,7 @@
 				        <h2>Sign Up For What's Happenin'</h2>
 				      </div>
 
-				      <div class="modal-body">
+				      <div class="modal-body form-align">
 				      	<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
 							    <%= f.text_field :name, label: "Name:", class: "form-font" %>
 							    <%= f.email_field :email, label: "Email:", class: "form-font" %>
@@ -55,7 +55,7 @@
 							    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
 							    <%= f.file_field :avatar %>
 
-							    <%= f.submit "Sign me up!" %>
+							    <%= f.submit "Sign me up!", class: "btn btn-info" %>
 					  		<% end %>
 				      </div>
 
@@ -70,13 +70,13 @@
 			<!-- ============== USERS WHO HAVE SIGNED IN ============== -->
       <% if logged_in? %>
 				<div class='login-nav'>
-          <button class="btn btn-lg btn-info btn-register logout-btn"><%= link_to "Log Out", logout_path, method: :delete%></button>
+          <button class="btn btn-info btn-register btn-lg nav-links"><%= link_to "Log Out", logout_path, method: :delete%></button>
 
-          <button class="btn btn-lg btn-info btn-register friends-btn"><%= link_to "Friends", users_path%></button>
+          <button class="btn btn-info btn-register btn-lg nav-links"><%= link_to "Friends", users_path%></button>
 
-          <button class="btn btn-info btn-register btn-lg checkin-btn" data-toggle="modal"><%= link_to "Check In", new_checkin_path %></button>
+          <button class="btn btn-info btn-register btn-lg nav-links" data-toggle="modal"><%= link_to "Check In", new_checkin_path %></button>
 
-          <button class="btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+          <button class="btn btn-info btn-register btn-lg nav-links"><%= link_to "Your Profile", user_path(current_user)%></button>
         </div>
 
         <!-- ============== Start Edit User Modal ============== -->
@@ -118,7 +118,7 @@
 		</div> <!-- end class row-->
 
 <!-- ============== GOOGLE MAP ============== -->
-    <div class="row map-container">
+    <div class="row map-container land-page">
     	<div>
     		<input id="pac-input" class="controls" type="text" placeholder="Search your location - enter an address or venue">
       <div id="map-canvas" class="centered"></div>

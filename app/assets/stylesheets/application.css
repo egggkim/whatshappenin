@@ -26,42 +26,8 @@ li {
   list-style: none;
 }
 
-.login-btn,
-.signup-btn,
-.logout-btn,
-.friends-btn,
-.profile-btn, 
-.edit-btn,
-.checkin-btn,
-.home-btn {
-  position: relative;
-  float: right;
-  margin-top: 10px;
-  left: -30px;
-  color: teal;
-  text-decoration: none; 
-}
-
-/*
-.checkin-btn {
-  position: relative;
-  float: right;
-  margin-top: -3px;
-  left: -30px;
-  color: teal;
-  text-decoration: none;
-}*/
-
-.login-btn:hover, 
-.logout-btn:hover, 
-.friends-btn:hover,
-.profile-btn:hover,
-.edit-btn:hover,
-.checkin-btn:hover,
-.home-btn:hover {
-  text-decoration: underline;
-  color: teal;
-  background-color: white;
+.btn-info {
+  color: white;
 }
 
 .flash-notice {
@@ -70,7 +36,7 @@ li {
 }
 
 .form-font {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .nav-pills {
