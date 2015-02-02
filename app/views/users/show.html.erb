@@ -1,3 +1,17 @@
+<!-- jquery scriptfor user show page tabs -->
+<script>
+$(function() {
+  $( "#tabs" ).tabs({
+    beforeLoad: function( event, ui ) {
+      ui.jqXHR.error(function() {
+        ui.panel.html(
+          "Error loading tab. Please email us with your a message about your bug and we will fix it as soon as possible.");
+      });
+    }
+  });
+});
+</script>
+
 <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
 
 <h1>More about <%= @user.name %></h1>
@@ -9,11 +23,10 @@
     <div class="modal-dialog modal-med">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+          <h2 class="modal-title" id="myModalLabel">Edit Your Profile</h2>
         </div>
+
         <div class="modal-body">
-         
           <%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
             <%= f.text_field :name, label: "Name:", class: "form-font" %>
             <%= f.email_field :email, label: "Email:", class: "form-font" %>
@@ -24,8 +37,8 @@
 
             <%= f.submit "Save Changes!" %>
           <% end %>
-       
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -71,54 +84,48 @@
     </div> <!-- end modal dialog div-->
   </div> <!-- end checkin modal -->
 
-<!-- shows ALL current user's friends -->
-<h2>Your friends</h2>
 <div>
-  <% current_user.friendships.each do |friendship| %>
-    <%= image_tag friendship.friendee.avatar.url(:thumb) %>
-    <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
-    <%= link_to "delete friend", friendship, :method => :delete %>
-  <% end %>
-</div>
-
-<!-- shows who have sent requests to the current_user -->
-<h2>Pending Friends</h2>
+<!-- shows ALL current user's friends -->
+  <h2>Your friends</h2>
   <div>
-    <% current_user.request_received.each do |request| %>
-      <%= image_tag request.user.avatar.url(:thumb) %>
-      <%= link_to request.user.name, user_path(request.user) %>
-      <%= link_to "accept", friendship_request_path(request,:accept => true), :method => :delete %>
-      <%= link_to "decline", friendship_request_path(request), :method => :delete %>
+    <% current_user.friendships.each do |friendship| %>
+      <%= image_tag friendship.friendee.avatar.url(:thumb) %>
+      <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
+      <%= link_to "delete friend", friendship, :method => :delete %>
+    <% end %>
+  </div>
+
+  <!-- shows who have sent requests to the current_user -->
+  <h2>Pending Friends</h2>
+    <div>
+      <% current_user.request_received.each do |request| %>
+        <%= image_tag request.user.avatar.url(:thumb) %>
+        <%= link_to request.user.name, user_path(request.user) %>
+        <%= link_to "accept", friendship_request_path(request,:accept => true), :method => :delete %>
+        <%= link_to "decline", friendship_request_path(request), :method => :delete %>
+        <% end %>
+    </div>
+
+  <!-- shows who you have sent requests to -->
+  <h2>Requested Friends</h2>
+    <div>
+      <% current_user.friendship_requests.each do |request| %>
+
+      <%= image_tag request.friendee.avatar.url(:thumb) %>
+      <%= link_to request.friendee.name, user_path(request.friendee)%>
+      <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+
       <% end %>
-  </div>
+    </div>
 
-<!-- shows who you have sent requests to -->
-<h2>Requested Friends</h2>
-  <div>
-    <% current_user.friendship_requests.each do |request| %>
-
-    <%= image_tag request.friendee.avatar.url(:thumb) %>
-    <%= link_to request.friendee.name, user_path(request.friendee)%>
-    <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
-
-    <% end %>
-  </div>
-
-
-<!-- shows all current users's checkins -->
-<h2>Places you have been</h2>
-  <!-- <%= current_user.checkins.inspect %> -->
-  <div>
-    <% current_user.checkins.each do |checkin| %>
-      <li><%= checkin.name %></li>
-      <li><%= checkin.created_at.localtime.strftime("%d %b. %Y at %l:%M %P") %></li>
-      <li><%= checkin.status %></li>
-      <li><%= image_tag checkin.photo.url(:photo) %></li>
-      <!-- format the time -->
-    <% end %>
-  </div>
-
-<!-- if/else current user sees different view -->
-
-  
-  <!-- Need to implement messaging system? -->
+  <!-- shows all current users's checkins -->
+  <h2>Your Previous Check Ins</h2>
+    <div>
+      <% current_user.checkins.each do |checkin| %>
+        <li><%= checkin.name %></li>
+        <li><%= checkin.created_at.localtime.strftime("%d %b. %Y at %l:%M %P") %></li>
+        <li><%= checkin.status %></li>
+        <li><%= image_tag checkin.photo.url(:photo) %></li>
+      <% end %>
+    </div>
+</div>

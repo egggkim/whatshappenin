@@ -3,24 +3,22 @@
 <head>
   <title>Whatshappenin</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-    <%= csrf_meta_tags %>
-   
-    <!-- GOOGLE MAPS API -->
-    
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=#{ENV[API_KEY]}"></script>
-
-    <script type="text/javascript">
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+  <%= csrf_meta_tags %>
+ 
+  <!-- GOOGLE MAPS API -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=#{ENV[API_KEY]}"></script>
+  <script type="text/javascript">
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
     
 </head>
 <body>
@@ -30,5 +28,17 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
      
+<script>
+$(function() {
+  $( "#tabs" ).tabs({
+    beforeLoad: function( event, ui ) {
+      ui.jqXHR.error(function() {
+        ui.panel.html(
+          "Error loading tab. Please email us with your a message about your bug and we will fix it as soon as possible.");
+      });
+    }
+  });
+});
+</script>
 </body>
 </html>
