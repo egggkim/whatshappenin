@@ -80,7 +80,7 @@
 
   <!-- ============ User Friends Modal ============ -->
     <!-- shows all user's friends -->
-    <a class="user-modal" data-toggle="modal" data-target="#userFriendsModal"><%= @user.name %>'s Friends</a>
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#userFriendsModal"><%= @user.name %>'s Friends</button>
     <div class="modal fade" id="userFriendsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-med">
         <div class="modal-content">
@@ -107,7 +107,7 @@
 
   <!-- ============ Incoming Friend Requests Modal============ -->
     <!-- shows who have sent requests to the current_user -->
-    <a class="user-modal" data-toggle="modal" data-target="#incomingFriendRequests">Incoming Friend Requests</a>
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#incomingFriendRequests">Incoming Friend Requests</button>
     <div class="modal fade" id="incomingFriendRequests" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-med">
         <div class="modal-content">
@@ -133,7 +133,7 @@
 
 <!-- ============ User Pending Friends Modal============ -->
     <!-- shows who you have sent requests to -->
-    <a class="user-modal" data-toggle="modal" data-target="#pendingRequestsModal">Pending Friend Requests</a>
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#pendingRequestsModal">Pending Friend Requests</button>
     <div class="modal fade" id="pendingRequestsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-med">
         <div class="modal-content">
