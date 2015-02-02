@@ -6565,7 +6565,7 @@ input {
 
 /* HEADER SECTION */
 #h {
-	background: url(header.jpg) no-repeat center top;
+	background: url(https://s3-us-west-1.amazonaws.com/carrierwave-tony/header.jpg) no-repeat center top;
 	padding-top: 10px;
 	padding-bottom: 40px;
 	text-align:center;
