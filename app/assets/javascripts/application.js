@@ -120,8 +120,9 @@ function initialize() {
         postPixUrl = instaData.data[i].images.thumbnail.url;
           // console.log(postPixUrl);
         var instaDiv = '<li>';
-        instaDiv += '<img src="' + postPixUrl + '" width="150px" height="150px">';
+        instaDiv += '<img src="' + postPixUrl + '" width="225px" height="225px">';
         $('#picture-feed').append(instaDiv);
+        
 
 
       }

@@ -156,6 +156,8 @@ list-style:none ;
 #picture-feed li {
   display: inline-block;
   list-style-type: none;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
 .controls {
