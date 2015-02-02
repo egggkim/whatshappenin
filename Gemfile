@@ -50,4 +50,5 @@ gem 'bootstrap_form'
 gem 'bcrypt'
 gem 'pry'
 gem 'thin', group: :production
+gem 'geocoder'
 
