@@ -21,11 +21,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-      process :resize_to_fit => [32, 24]
+      process :resize_to_fill => [100, 100]
   end
 
   version :full do
-      process :resize_to_fit => [400, 280]
+      process :resize_to_fill => [400, 400]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

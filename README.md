@@ -8,7 +8,6 @@ What’s Happenin’ is an application that allows users to see what places are 
 * Visual and statistical representation
 * Search your specific location to see what’s nearby
 * See where people are and what they have to say about it by pulling data from social media
-* Consolidates data from multiple social media platforms
 * Check in via What's Happenin and make new friends in-app 
 
 
@@ -24,8 +23,7 @@ What’s Happenin’ is an application that allows users to see what places are 
 * Pivotal Tracker
 
 #Instructions
-* link to Herokuapp 
-
+* link to Herokuapp: http://www.whatshappenin.herokuapp.com
 
 #About the developers
 Created by Joey B Atiba, Karen S Kim, Tony Alden, and Zillah Chen as a group project for General Assembly's WDI cohort 12-13. Contact us with any questions via github! We would love to hear from you. 
