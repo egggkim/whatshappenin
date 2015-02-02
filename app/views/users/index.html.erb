@@ -1,29 +1,34 @@
 
-<!-- currently a list of all users -->
-
-
-
-<div class='col-md-4'>
-  <h2>Possible friends</h2>
-  <% current_user.possible_friends.each do |f|%>
-    <%= image_tag f.avatar.url(:thumb) %>
-    <br>
-    <div class="form-font"><%= f.name%></div>
-    <div class="form-font"> <%= link_to "Request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %></div>
-  <% end %>
+<div class='container'>
+  <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Logout", logout_path %></button>
+  <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>  
+  <button class="btn btn-info btn-register btn-lg checkin-btn" ><%=link_to "Check in", new_checkin_path  %></button>
+  <button class="btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+  <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Home", root_path %></button>
 </div>
 
-<div class='col-md-8'>
-  <h2>What people are up to</h2>
-    <% @users.each do |u| %>
-        <%= link_to u.name, user_path(u.id)%>
+<div class='container'>
+  <div class='col-md-4'>
+    <h2>Possible friends</h2>
+    <% current_user.possible_friends.each do |f|%>
+      <%= image_tag f.avatar.url(:thumb) %>
       <br>
-      <% u.checkins.each do |c| %>
-        <%= image_tag c.photo.url(:photo) %>
-      <% end %>
+      <div class="form-font"><%= f.name%></div>
+      <div class="form-font"> <%= link_to "Request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %></div>
     <% end %>
-</div>
+  </div>
 
+  <div class='col-md-8'>
+    <h2>What others are up to</h2>
+      <% @users.each do |u| %>
+          <%= link_to u.name, user_path(u.id)%>
+        <br>
+        <% u.checkins.each do |c| %>
+          <%= image_tag c.photo.url(:photo) %>
+        <% end %>
+      <% end %>
+  </div>
+</div>
 
 
 

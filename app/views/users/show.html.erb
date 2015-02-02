@@ -1,11 +1,72 @@
 
-<h1>More about <%= @user.name %></h1>
 
 
-<!-- User avatar -->
 
-    <%= image_tag @user.avatar.url, size: "200x200" %>
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+<!-- BUTTON NAVBAR -->
+<div class='container'>
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Logout", logout_path %></button>
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>  
+            <button class="btn btn-info btn-register btn-lg checkin-btn" ><%=link_to "Check in", new_checkin_path  %></button>
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Friends", users_path %></button>
+            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Home", root_path %></button>
+</div>
+<!-- END OF BUTTON NAV BAR -->
+<!-- BEG OF MAIN SECTION -->
+
+<div class='container'>
+  <div class='col-md-6'>
+  <h1>More about <%= @user.name %></h1>
+  <%= image_tag @user.avatar.url, size: "200x200" %>
+  <h2>Your friends</h2>
+  <div>
+      <% current_user.friendships.each do |friendship| %>
+        <%= image_tag friendship.friendee.avatar.url(:thumb) %>
+        <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
+        <%= link_to "delete friend", friendship, :method => :delete %>
+    <% end %>
+  </div>
+
+  <!-- shows who have sent requests to the current_user -->
+
+  <h2>Pending Friends</h2>
+    <div>
+      <% current_user.request_received.each do |request| %>
+        <%= image_tag request.user.avatar.url(:thumb) %>
+        <%= link_to request.user.name, user_path(request.user) %>
+        <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
+        <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
+
+        <% end %>
+    </div>
+  <!-- shows who you have sent requests to -->
+  <h2>Requested Friends</h2>
+    <div>
+      <% current_user.friendship_requests.each do |request| %>
+
+      <%= image_tag request.friendee.avatar.url(:thumb) %>
+      <%= link_to request.friendee.name, user_path(request.friendee)%>
+      <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+
+      <% end %>
+    </div>
+  </div>
+    <!-- All current users's checkins -->
+  <div class = "col-md-6">
+    <h2>Places you have been</h2>
+      <!-- <%= current_user.checkins.inspect %> -->
+      <ul>
+        <% @user.checkins.each do |checkin| %>
+          <li><%= checkin.name %></li>
+          <li><%= checkin.created_at %></li>
+          <li><%= checkin.status %></li>
+          <li><%= image_tag checkin.photo.url(:photo) %></li>
+
+          <!-- format the time -->
+        <% end %>
+      </ul>
+  </div>
+</div>
+
 
 <!-- Start Edit User Modal  -->
 
@@ -81,54 +142,11 @@
                 </div>
 
 <!-- ALL current user's friends -->
-<h2>Your friends</h2>
-<div>
-    <% current_user.friendships.each do |friendship| %>
-      <%= image_tag friendship.friendee.avatar.url(:thumb) %>
-      <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
-      <%= link_to "delete friend", friendship, :method => :delete %>
-  <% end %>
+<div class = "col-md-6">
+  
 </div>
 
-<!-- shows who have sent requests to the current_user -->
-<h2>Pending Friends</h2>
-  <div>
-    <% current_user.request_received.each do |request| %>
-      <%= image_tag request.user.avatar.url(:thumb) %>
-      <%= link_to request.user.name, user_path(request.user) %>
-      <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
-      <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
 
-      <% end %>
-  </div>
-<!-- shows who you have sent requests to -->
-<h2>Requested Friends</h2>
-  <div>
-    <% current_user.friendship_requests.each do |request| %>
-
-    <%= image_tag request.friendee.avatar.url(:thumb) %>
-    <%= link_to request.friendee.name, user_path(request.friendee)%>
-    <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
-
-    <% end %>
-  </div>
-
-
-<!-- All current users's checkins -->
-<div >
-  <h2>Places you have been</h2>
-    <!-- <%= current_user.checkins.inspect %> -->
-    <ul>
-      <% current_user.checkins.each do |checkin| %>
-        <li><%= checkin.name %></li>
-        <li><%= checkin.created_at %></li>
-        <li><%= checkin.status %></li>
-        <li><%= image_tag checkin.photo.url(:photo) %></li>
-
-        <!-- format the time -->
-      <% end %>
-    </ul>
-</div>
 
 <!-- if/else current user sees different view -->
 
