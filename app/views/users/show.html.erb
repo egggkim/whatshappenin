@@ -85,10 +85,10 @@ $(function() {
   </div> <!-- end checkin modal -->
 
 <div>
-<!-- shows ALL current user's friends -->
-  <h2>Your friends</h2>
+<!-- shows ALL user's friends -->
+  <h2><%= @user.name %>'s Friends</h2>
   <div>
-    <% current_user.friendships.each do |friendship| %>
+    <% @user.friendships.each do |friendship| %>
       <%= image_tag friendship.friendee.avatar.url(:thumb) %>
       <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
       <%= link_to "delete friend", friendship, :method => :delete %>
