@@ -1,154 +1,172 @@
+<div class='container-fluid'>
+  <div class="nav">
+    <button class="btn btn-info btn-register btn-lg nav-links"><%= link_to "Log Out", logout_path, method: :delete%></button>
 
+    <button class="btn btn-info btn-register btn-lg nav-links" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
 
+    <button class="btn btn-info btn-register btn-lg nav-links"><%= link_to "Back Home", root_path %></button>
+  </div>  
 
-
-<!-- BUTTON NAVBAR -->
-<div class='container'>
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Logout", logout_path %></button>
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>  
-            <button class="btn btn-info btn-register btn-lg checkin-btn" ><%=link_to "Check in", new_checkin_path  %></button>
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Friends", users_path %></button>
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn"><%= link_to "Home", root_path %></button>
-</div>
-<!-- END OF BUTTON NAV BAR -->
-<!-- BEG OF MAIN SECTION -->
-
-<div class='container'>
-  <div class='col-md-6'>
   <h1>More about <%= @user.name %></h1>
-  <%= image_tag @user.avatar.url, size: "200x200" %>
-  <h2>Your friends</h2>
-  <div>
-      <% current_user.friendships.each do |friendship| %>
-        <%= image_tag friendship.friendee.avatar.url(:thumb) %>
-        <%= link_to friendship.friendee.name, user_path(friendship.friendee)%>
-        <%= link_to "delete friend", friendship, :method => :delete %>
-    <% end %>
-  </div>
 
-  <!-- shows who have sent requests to the current_user -->
+  <%= image_tag @user.avatar.url(:thumb) %>
+   
+  <!-- ============ Start Edit User Modal ============ -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-med">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="myModalLabel">Edit Your Profile</h2>
+          </div>
 
-  <h2>Pending Friends</h2>
-    <div>
-      <% current_user.request_received.each do |request| %>
-        <%= image_tag request.user.avatar.url(:thumb) %>
-        <%= link_to request.user.name, user_path(request.user) %>
-        <%= link_to "accept", friendship_request_path(request,:accept=>true), :method=>:delete %>
-        <%= link_to "decline", friendship_request_path(request), :method=>:delete %>
+          <div class="modal-body">
+            <%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
+              <%= f.text_field :name, label: "Name:", class: "form-font" %>
+              <%= f.email_field :email, label: "Email:", class: "form-font" %>
+              <%= f.password_field :password, label: "Password:", class: "form-font" %>
+              <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+              <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+              <%= f.file_field :avatar %>
 
-        <% end %>
-    </div>
-  <!-- shows who you have sent requests to -->
-  <h2>Requested Friends</h2>
-    <div>
-      <% current_user.friendship_requests.each do |request| %>
+              <%= f.submit "Save Changes!" %>
+            <% end %>
+          </div>
 
-      <%= image_tag request.friendee.avatar.url(:thumb) %>
-      <%= link_to request.friendee.name, user_path(request.friendee)%>
-      <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div> <!-- end modal content div-->
+      </div> <!-- end modal dialog div-->
+    </div> <!-- end edit user modal -->
 
-      <% end %>
-    </div>
-  </div>
-    <!-- All current users's checkins -->
-  <div class = "col-md-6">
-    <h2>Places you have been</h2>
-      <!-- <%= current_user.checkins.inspect %> -->
-      <ul>
+  <!-- ============ Start Checkins Modal This doesn't work moved to checkins/new view ============ -->
+    <div class="modal fade" id="checkInUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-med">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Check In</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="row map-container">
+              <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name">
+              <div id="map-canvas" class="centered"></div>
+            </div>
+
+            <%= bootstrap_form_for :checkin, url: {:controller=> 'checkins', :action => "create"}  do |f| %>
+              <%= f.file_field :photo, label: "Photo:" %>
+              <%= f.text_area :status, label: "What's happenin?" %>
+              <!-- content in this div is appended from google maps ajax request and solely input here to save to db -->
+              <div class='hide'>
+                <%= f.text_area :name, :id => 'name' %>
+                <%= f.text_area :longitude, :id => 'longitude' %>
+                <%= f.text_area :latitude, :id => 'latitude'  %>
+                <%= f.text_area :formatted_address, :id => 'address' %>
+                <%= f.text_area :types, :id => 'type' %>
+              </div>
+              <%= f.submit "Check me in!" %>
+            <% end %>
+            <%= link_to "Cancel", root_path %>
+          </div> <!-- end modal body div-->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div> <!-- end modal content div-->
+      </div> <!-- end modal dialog div-->
+    </div> <!-- end checkin modal -->
+
+
+  <!-- ============ User Friends Modal ============ -->
+    <!-- shows all user's friends -->
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#userFriendsModal"><%= @user.name %>'s Friends</button>
+    <div class="modal fade" id="userFriendsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-med">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2><%= @user.name %>'s Friends</h2>
+          </div>
+
+          <div class="modal-body">
+            <% @user.friendships.each do |friendship| %>
+              <%= image_tag friendship.friendee.avatar.url(:thumb) %>
+              <h3><%= link_to friendship.friendee.name, user_path(friendship.friendee)%></h3>
+              <p>Friends since: <%= friendship.created_at.localtime.strftime("%B %d, %Y") %></p>
+              <%= link_to "delete friend", friendship, :method => :delete %>
+              <hr>
+            <% end %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div> <!-- end modal content div-->
+      </div> <!-- end modal dialog div-->
+    </div> <!-- end edit user modal -->
+
+  <!-- ============ Incoming Friend Requests Modal============ -->
+    <!-- shows who have sent requests to the current_user -->
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#incomingFriendRequests">Incoming Friend Requests</button>
+    <div class="modal fade" id="incomingFriendRequests" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-med">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Pending Friends</h2>
+          </div>
+
+          <div class="modal-body">
+            <% current_user.request_received.each do |request| %>
+              <%= image_tag request.user.avatar.url(:thumb) %>
+              <%= link_to request.user.name, user_path(request.user) %>
+              <%= link_to "accept", friendship_request_path(request,:accept => true), :method => :delete %>
+              <%= link_to "decline", friendship_request_path(request), :method => :delete %>
+              <% end %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div> <!-- end modal content div-->
+      </div> <!-- end modal dialog div-->
+    </div> <!-- end edit user modal -->
+
+<!-- ============ User Pending Friends Modal============ -->
+    <!-- shows who you have sent requests to -->
+    <button class="btn btn-primary user-modal" data-toggle="modal" data-target="#pendingRequestsModal">Pending Friend Requests</button>
+    <div class="modal fade" id="pendingRequestsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-med">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Incoming Friend Requests</h2>
+          </div>
+
+          <div class="modal-body">
+            <% current_user.friendship_requests.each do |request| %>
+
+            <%= image_tag request.friendee.avatar.url(:thumb) %>
+            <%= link_to request.friendee.name, user_path(request.friendee)%>
+            <%= link_to "cancel", friendship_request_path(request), :method=>:delete %>
+
+            <% end %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div> <!-- end modal content div-->
+      </div> <!-- end modal dialog div-->
+    </div> <!-- end edit user modal -->
+
+    <!-- shows all users's checkins -->
+    <h2><%= @user.name %>'s Previous Check Ins</h2>
+      <div class='checkin'>
         <% @user.checkins.each do |checkin| %>
-          <li><%= checkin.name %></li>
-          <li><%= checkin.created_at %></li>
-          <li><%= checkin.status %></li>
+          <li id="checkin-name"><h3><%= image_tag "checkin.png", height: 30 %> <%= checkin.name %></h3></li>
+          <li><%= checkin.created_at.localtime.strftime("%d %b. %Y at %l:%M %P") %></li>
           <li><%= image_tag checkin.photo.url(:photo) %></li>
-
-          <!-- format the time -->
+          <li><%= checkin.status %></li>
         <% end %>
-      </ul>
+      </div>
   </div>
 </div>
-
-
-<!-- Start Edit User Modal  -->
-
-            <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-med">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
-                      </div>
-                      <div class="modal-body">
-                       
-                        <%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
-                          <%= f.text_field :name, label: "Name:", class: "form-font" %>
-                          <%= f.email_field :email, label: "Email:", class: "form-font" %>
-                          <%= f.password_field :password, label: "Password:", class: "form-font" %>
-                          <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
-                          <%= f.text_field :city, label: "Your city:", class: "form-font" %>
-                          <%= f.file_field :avatar %>
-
-                          <%= f.submit "Save Changes!" %>
-                        <% end %>
-                     
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-            <!-- End Edit User Modal -->
-
-
-            <!-- Start Checkins Modal This doesn't work moved to checkins/new view -->
-
-            <div class="modal fade" id="checkInUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-med">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Check In</h4>
-                      </div>
-                      <div class="modal-body">
-                       
-                        <div class="row map-container">
-                          <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name">
-                          <div id="map-canvas" class="centered"></div>
-                        </div>
-
-
-                        <%= bootstrap_form_for :checkin, url: {:controller=> 'checkins', :action => "create"}  do |f| %>
-                          <%= f.file_field :photo, label: "Photo:" %>
-                          <%= f.text_area :status, label: "What's happenin?" %>
-                          <div class='hide'>
-                            <%= f.text_area :name, :id => 'name' %>
-                            <%= f.text_area :longitude, :id => 'longitude' %>
-                            <%= f.text_area :latitude, :id => 'latitude'  %>
-                            <%= f.text_area :formatted_address, :id => 'address' %>
-                            <%= f.text_area :types, :id => 'type' %>
-                          </div>
-                          <%= f.submit "Check me in!" %>
-                        <% end %>
-                        <%= link_to "Cancel", root_path %>
-
-                     
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-<!-- ALL current user's friends -->
-<div class = "col-md-6">
-  
-</div>
-
-
-
-<!-- if/else current user sees different view -->
-
-  
-  <!-- Need to implement messaging system? -->

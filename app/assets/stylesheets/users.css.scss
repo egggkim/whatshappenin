@@ -4,5 +4,23 @@
 
 .user_checkin_container{
   display:inline-block;
-  
+}
+
+#usertabs {
+  li {
+    display: inline;
+  }
+}
+
+.checkin {
+  width: 300px;
+  li {
+    display: inline;
+  }
+}
+
+#checkin-name {
+  h3 {
+    margin: 0;
+  }
 }
