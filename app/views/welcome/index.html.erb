@@ -1,206 +1,162 @@
 
 
-	<! -- ********** HEADER ********** -->
+	<!-- ============== HEADER ============== -->
 
 	<div id="h">
 		<div class="container">
 			<div class="row">
-					<div class="flash-notice">
-						<% if flash[:notice] %>
-	  						<%= flash[:notice] %>
-	  					<%end%>
-	  			</div>
-						<% if !logged_in? %>
-	          
-	          
-	          
+				<div class="flash-notice">
+					<% if flash[:notice] %>
+						<%= flash[:notice] %>
+  				<% end %>
+  			</div>
 
+				<!-- ============== USER SIGN UP AND LOG IN ============== -->
+				<% if !logged_in? %>
+          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
 
-	          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
+          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
 
-	          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+					<!-- ============== Log In Modal ============== -->
+					<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-med">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					      	<h2>Log In To What's Happenin'</h2>
+					      </div>
 
-<!-- Log In Modal -->
+					      <div class="modal-body"> 
+					      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
+							      <%= f.text_field :email, label: "Email:", class: "form-font" %>
+							      <%= f.password_field :password, label: "Password:", class: "form-font" %>
 
-						<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog modal-med">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						       
-						      </div>
-						      <div class="modal-body">
-						       
-						      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
-								      <%= f.text_field :email, label: "Email:", class: "form-font" %>
-								      <%= f.password_field :password, label: "Password:", class: "form-font" %>
+							      <%= f.submit 'Log In' %>
+						    <% end %>
+					      </div>
 
-								      <%= f.submit 'Log In' %>
-							    <% end %>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div> <!-- end modal content div -->
+					  </div> <!-- end modal dialog div -->
+					</div> <!-- end log in modal -->
 
+					<!-- ============== New User Modal ============== -->
+					<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-med">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h2>Sign Up For What's Happenin'</h2>
+					      </div>
 
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-						  </div>
-						</div> <!-- end Log In Modal -->
+					      <div class="modal-body">
+					      	<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
+								    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+								    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+								    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+								    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+								    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+								    <%= f.file_field :avatar %>
 
-				<!-- New User Modal  -->
+								    <%= f.submit "Sign me up!" %>
+						  		<% end %>
+					      </div>
 
-						<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog modal-med">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        
-						      </div>
-						      <div class="modal-body">
-						       
-						      	<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
-									    <%= f.text_field :name, label: "Name:", class: "form-font" %>
-									    <%= f.email_field :email, label: "Email:", class: "form-font" %>
-									    <%= f.password_field :password, label: "Password:", class: "form-font" %>
-									    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
-									    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
-									    <%= f.file_field :avatar %>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div> <!-- end modal content div -->
+					  </div> <!-- end modal dialog div -->
+					</div> <!-- end sign up modal -->
+        <% end %> <!--- end !logged_in? -->
 
-									    <%= f.submit "Sign me up!" %>
-							  		<% end %>
-							   
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-						  </div>
-						</div>
+				<!-- ============== USERS WHO HAVE SIGNED IN ============== -->
+        <% if logged_in? %>
 
-				<!-- End New User Modal -->
+          <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Friends", users_path%></button>
 
+          <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
 
+          <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
 
+          <!-- ============== Start Edit User Modal ============== -->
+					<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					  <div class="modal-dialog modal-med">
+					    <div class="modal-content">
 
-	          
-	        <% end %> <!--- end !logged_in? -->
+					      <div class="modal-header">
+					        <h2 class="modal-title" id="myModalLabel">Edit Your Profile</h4>
+					      </div>
 
+					      <div class="modal-body">
+					      	<%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
+								    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+								    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+								    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+								    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+								    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+								    <%= f.file_field :avatar %>
 
-          <% if logged_in? %>
-     
+								    <%= f.submit "Save Changes!" %>
+						  		<% end %>
+					      </div>
 
-            <button type="button" class="edit-btn  btn btn-lg btn-info btn-register  " data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
 
-            <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Friends", users_path%></button>
+					    </div> <!-- end modal content div -->
+					  </div> <!-- end modal diaglog div -->
+					</div> <!-- end edit user modal -->
+       	<% end %> <!-- end logged_in? -->
 
+		    <div class="col-md-10 col-md-offset-1 mt">
+		    	<h1 class="mb">WHAT'S HAPPENIN?</h1>
+		    </div>
+			</div> <!-- end class row-->
 
-            <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
-
-            <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
-
-            <!-- Start Edit User Modal  -->
-
-						<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								  <div class="modal-dialog modal-med">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								        <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
-								      </div>
-								      <div class="modal-body">
-								       
-								      	<%= bootstrap_form_for current_user, url: user_path(current_user), method: :patch do |f| %>
-											    <%= f.text_field :name, label: "Name:", class: "form-font" %>
-											    <%= f.email_field :email, label: "Email:", class: "form-font" %>
-											    <%= f.password_field :password, label: "Password:", class: "form-font" %>
-											    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
-											    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
-											    <%= f.file_field :avatar %>
-
-											    <%= f.submit "Save Changes!" %>
-									  		<% end %>
-									   
-								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-
-						<!-- End Edit User Modal -->
-
-						
-
-          <% end %> <!-- End logged_in? -->
-
-			    <div class="col-md-10 col-md-offset-1 mt">
-			    	<h1 class="mb">WHAT'S HAPPENIN?</h1>
-			    </div>
-
-			</div>
-
-			
-
-
-
-
-        <!-- GOOGLE MAP -->
+	<!-- ============== GOOGLE MAP ============== -->
       <div class="row map-container">
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box - Enter Address or Venue Name.">
-          <div id="map-canvas" class="centered"></div>
+      	<div>
+      		<input id="pac-input" class="controls" type="text" placeholder="Enter your location to see what's happenin around you">
+        <div id="map-canvas" class="centered"></div>
       </div>
 
       <div class="row instaDiv">	
-
-      <ul id="picture-feed">  
-        
-    	</ul>
-      	
+      	<ul id="picture-feed">  
+ 	    	</ul>
       </div>
+		</div> <!--/container -->
+	</div> <!--/H -->
 
-		</div><! --/container -->
-	</div><! --/h -->
-	
-	<! -- ********** FIRST ********** -->
+	<!-- ============== ABOUT WHAT'S HAPPENIN ============== -->
 	<div id="w">
-		<div class="row nopadding">
-			<div class="col-md-5 col-md-offset-1 mt">
-				<h4>What's Happenin?</h4>
-				<p>Takes the OMO out of FOMO</p>
-				<p>Don't know what to do on a Friday night?</p>
-				<p>Check out what what everyone else in the area is doing</p>
-				<p>What’s Happenin’ is an application that allows users to see what places are popular based on social media in real time.</p>				
-			</div>
-			
-			<div class="col-md-6 pull-right">
-				<%=image_tag('party.jpg', width:475, height:350)%> 
-			</div>
-		</div>
-	</div>
-	
-	
-	<! -- ********** BLUE SECTION - CURIOUS ********** -->
-	<div id="curious">
-		<div class="row nopadding">
-			<div class="col-md-5 col-md-offset-1 mt">
-				<h4>Important Tools Provided</h4>
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-				<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-				<p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-				<p class="mt"><button class="btn btn-white btn-theme">Sign Up Now | 14 Days Free</button></p>
-			</div>
-			
-			<div class="col-md-6 pull-right">
-	
-			</div>
-		</div><! --/row -->
-	</div><! --/curious -->
+		<div class="row">
+			<div class='container-fluid wh'>
+				<h4 class='wh-title'>What's Happenin?</h4>
+				<div class='col-md-3 wh-div'>
+					<%= image_tag "fomo.png" %>
+					<p>Take the OMO out of FOMO with What's Happenin'. Find out what's going on in your area in real time so you never feel left out again.</p>
+				</div>
 
+				<div class='col-md-3 wh-div'>
+					<%= image_tag "glass.png" %>
+					<p>Don't know what to do on a Friday night? Before you check out that new venue nearby, look to see who's already there and what's happenin.</p>
+				</div>
 
+				<div class='col-md-3 wh-div'>
+					<%= image_tag "geotag.png" %>
+					<p>See geotagged Instagram posts in one place, check in to all of the hottest spots in town, and keep track of your favorite places.</p>
+				</div>
 
+				<div class='col-md-3 wh-div'>
+					<%= image_tag "friends.png" %>
+					<p>Find and add new friends directly on What's Happenin' so you can keep in touch and see what other hot spots you might want to check out.</p>				
+				</div>
+		</div> <!-- /container -->
+	</div> <!-- /W -->
 
-	<! -- ********** FOOTER ********** -->
+	<!-- ============== FOOTER ============== -->
 	<div id="f">
 		<div class="container">
 			<div class="row">
@@ -212,12 +168,11 @@
 						<li><%= link_to "Developers", developers_path%></li>
 					</ul>
 				</div>
+			</div> <!--r /ow -->
+		</div> <!-- /container -->
+	</div> <!-- /F -->
 
-			</div><! --/row -->
-		</div><! --/container -->
-	</div><! --/F -->
-
-	<! -- ********** CREDITS ********** -->
+	<!-- ============== CREDITS ============== -->
 	<div id="c">
 		<div class="container">
 			<div class="row">
@@ -225,5 +180,5 @@
 					<p>Copyright 2015 | JKTZ <3</p>
 				</div>
 			</div>
-		</div><! --/container -->
-	</div><! --/C -->
+		</div> <!-- /container -->
+	</div> <!-- /C -->
