@@ -28,17 +28,5 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
      
-<script>
-$(function() {
-  $( "#tabs" ).tabs({
-    beforeLoad: function( event, ui ) {
-      ui.jqXHR.error(function() {
-        ui.panel.html(
-          "Error loading tab. Please email us with your a message about your bug and we will fix it as soon as possible.");
-      });
-    }
-  });
-});
-</script>
 </body>
 </html>

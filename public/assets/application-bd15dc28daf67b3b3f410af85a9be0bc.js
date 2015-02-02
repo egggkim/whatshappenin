@@ -8294,7 +8294,7 @@ jQuery.fn.extend({
 		}
 
 		if ( proceed ) {
-			// The disjunction here is for better compressibility (see removeClass)
+			// The disraleway here is for better compressibility (see removeClass)
 			classes = ( value || "" ).match( rnotwhite ) || [];
 
 			for ( ; i < len; i++ ) {
