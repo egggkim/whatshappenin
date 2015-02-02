@@ -1,20 +1,26 @@
-<div class='col-md-4'>
-  <h2>Possible friends</h2>
-  <% current_user.possible_friends.each do |f|%>
-    <%= image_tag f.avatar.url(:thumb) %>
-    <br>
-    <div class="form-font"><%= f.name%></div>
-    <div class="form-font"> <%= link_to "Request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %></div>
-  <% end %>
-</div>
-
-<div class='col-md-8'>
-  <h2>What people are up to</h2>
-    <% @users.each do |u| %>
-        <%= link_to u.name, user_path(u.id)%>
+<div class='container-fluid'>
+  <div class='col-md-4'>
+    <h2>Possible friends</h2>
+    <% current_user.possible_friends.each do |f|%>
+      <%= image_tag f.avatar.url(:thumb) %>
       <br>
-      <% u.checkins.each do |c| %>
-        <%= image_tag c.photo.url(:photo) %>
-      <% end %>
+      <div class="form-font"><%= f.name%></div>
+      <div class="form-font"> <%= link_to "Request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %></div>
     <% end %>
+  </div>
+
+  <div class='col-md-8'>
+    <h2>What people are up to</h2>
+      <div>
+        <% @users.each do |u| %>
+          <%= link_to u.name, user_path(u.id)%>
+          <br>
+          <% u.checkins.each do |c| %>
+            <h4><%= c.name %><br></h4>
+            <%= image_tag c.photo.url(:photo) %>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
 </div>
