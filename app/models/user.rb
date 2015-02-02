@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
 
   has_and_belongs_to_many :checkins
+  has_secure_password
 
 
   def add_friend(friendee)
@@ -92,23 +93,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   attr_reader :password
 
-  def password=(unencrypted_password)
-    unless unencrypted_password.empty?
-      @password = unencrypted_password
-      self.password_digest = BCrypt::Password.create(unencrypted_password)
-    end
-  end
-
-  def authenticate(unencrypted_password)
-    if BCrypt::Password.new(self.password_digest) == unencrypted_password
-      return self
-    else
-      return false
-    end
-  end
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :password, presence: true, length:{in:6..20}, confirmation: true, on: :create
-  validates :password, length:{in:6..20}, confirmation: true, on: :update, allow_blank: true
 end
