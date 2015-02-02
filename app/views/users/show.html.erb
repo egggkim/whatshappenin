@@ -162,7 +162,7 @@
     <h2><%= @user.name %>'s Previous Check Ins</h2>
       <div class='checkin'>
         <% @user.checkins.each do |checkin| %>
-          <li id="checkin-name"><h3><%= image_tag "checkin.png", height: 30 %> <%= checkin.name %></h3></li>
+          <li id="checkin-name"><h3><%= image_tag "https://s3-us-west-1.amazonaws.com/carrierwave-tony/checkin.png", height: 30 %> <%= checkin.name %></h3></li>
           <li><%= checkin.created_at.localtime.strftime("%d %b. %Y at %l:%M %P") %></li>
           <li><%= image_tag checkin.photo.url(:photo) %></li>
           <li><%= checkin.status %></li>
