@@ -10,10 +10,18 @@
     <br>
     <div class="form-font"><%= f.name%></div>
     <div class="form-font"> <%= link_to "Request to be friends", friendship_requests_path(:friendee_id => f.id), :method=>:post %></div>
-
-    
   <% end %>
+</div>
 
+<div class='col-md-8'>
+  <h2>What people are up to</h2>
+    <% @users.each do |u| %>
+        <%= link_to u.name, user_path(u.id)%>
+      <br>
+      <% u.checkins.each do |c| %>
+        <%= image_tag c.photo.url(:photo) %>
+      <% end %>
+    <% end %>
 </div>
 
 
@@ -23,12 +31,7 @@
 
 
 
-<!-- creates a friendship_request -->
 
 
-<!-- shows who have sent requests to the current_user -->
 
-<% if logged_in? %>
-  <%= link_to "Log Out", logout_path, method: :delete %>
-<% end %>
 

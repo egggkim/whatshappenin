@@ -74,10 +74,8 @@ list-style:none ;
 }
 
 .edit-btn{
-  position: relative;
-  float: right;
+  float: left;
   margin-top: 0px;
-  left: -30px;
   color: teal;
   text-decoration: none;
 

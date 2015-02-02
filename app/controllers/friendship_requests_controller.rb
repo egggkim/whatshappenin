@@ -11,7 +11,7 @@ class FriendshipRequestsController < ApplicationController
     if @request.save
       redirect_to users_path
     else 
-      redirect_to users_path
+      redirect_to user_path
     end
   end
 
