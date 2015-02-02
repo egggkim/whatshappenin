@@ -15,7 +15,7 @@
 				<% if !logged_in? %>
           <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#loginModal">Log In</button>
 
-          <button type="button" class="btn btn-info btn-register btn-lg login-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+          <button type="button" class="btn btn-info btn-register btn-lg signup-btn" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
 
 					<!-- ============== Log In Modal ============== -->
 					<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -72,12 +72,18 @@
 
 				<!-- ============== USERS WHO HAVE SIGNED IN ============== -->
         <% if logged_in? %>
+					<div class='login-nav'>
+	          <button class="btn btn-lg btn-info btn-register logout-btn"><%= link_to "Log Out", logout_path, method: :delete%></button>
 
-          <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Friends", users_path%></button>
+	          <button class="btn btn-lg btn-info btn-register friends-btn"><%= link_to "Friends", users_path%></button>
 
-          <button class=" btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+	          <button class="btn btn-info btn-register btn-lg checkin-btn" data-toggle="modal" data-target="#editUserModal">Check In</button>
 
-          <button type="button" class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button>
+	          <button class="btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+          </div>
+
+<!-- MOVE THIS BUTTON TO USER SHOW VIEW -->
+<!--           <button class="btn btn-info btn-register btn-lg edit-btn" data-toggle="modal" data-target="#editUserModal">Edit Profile</button> -->
 
           <!-- ============== Start Edit User Modal ============== -->
 					<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,14 +117,15 @@
        	<% end %> <!-- end logged_in? -->
 
 		    <div class="col-md-10 col-md-offset-1 mt">
-		    	<h1 class="mb">WHAT'S HAPPENIN?</h1>
+		    	<h1>WHAT'S HAPPENIN?</h1>
+		    	<h5 class="mb descript">Enter your location below to see what's happenin near you</h5>
 		    </div>
 			</div> <!-- end class row-->
 
 	<!-- ============== GOOGLE MAP ============== -->
       <div class="row map-container">
       	<div>
-      		<input id="pac-input" class="controls" type="text" placeholder="Enter your location to see what's happenin around you">
+      		<input id="pac-input" class="controls" type="text" placeholder="Search your location - enter an address or venue">
         <div id="map-canvas" class="centered"></div>
       </div>
 

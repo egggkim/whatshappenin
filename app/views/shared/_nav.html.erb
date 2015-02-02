@@ -1,25 +1,21 @@
 <nav class='navbar navbar-default fixed-top'>
   <div class='navbar-header nav-right'>
     <ul class='nav nav-pills'>
-      <li id="login-name">Logged in as: <%= current_user.name %></li>
+      <li>
+        <button class="btn btn-lg btn-info btn-register logout-btn"><%= link_to "Log Out", logout_path, method: :delete%></button>
+      </li>
 
-      <li><%= link_to "Create New Check In", new_checkin_path %></li>
+      <li>
+        <button class="btn btn-lg btn-info btn-register friends-btn"><%= link_to "Friends", users_path%></button>
+      </li>
 
-      <li><%= link_to "Home", root_path %></li>
-      <%if logged_in? %>
-        <li><%= link_to "Log Out", logout_path, method: :delete %></li>
-      <% end %>
-      <!-- Add link to create new check in -->
+      <li>
+        <button class="btn btn-info btn-register btn-lg checkin-btn" data-toggle="modal" data-target="#editUserModal">Check In</button>
+      </li>
 
-
-      <li><%= link_to "Your Profile", user_path(current_user.id) %></li>
-    
-
-      
-      
-      <% if !logged_in? %>
-        <li><%= mail_to current_user.email, "Send email", subject: "#{current_user.name} Says Hello!" %></li>
-      <% end %>
+      <li>
+        <button class="btn btn-lg btn-info btn-register profile-btn"><%= link_to "Your Profile", user_path(current_user)%></button>
+      </li>
     </ul>
   </div>
 </nav>
