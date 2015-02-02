@@ -18,6 +18,9 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     @inverse.destroy
     redirect_to users_path
+  rescue
+    flash[:notice] = "You cant make changes other users profile"
+    redirect_to root_path
   end
 
 

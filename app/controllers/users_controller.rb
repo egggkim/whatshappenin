@@ -19,7 +19,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id.to_s
       redirect_to root_path
     else
-      render :new
+      flash[:notice] = "Error Signing up. Please try again."
+      redirect_to root_path
+      # render :new
     end
   end
 
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    
     @user = User.find(params[:id])
     if @user.destroy
       redirect_to root_path
