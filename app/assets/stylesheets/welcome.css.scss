@@ -5,10 +5,23 @@
 .nav {
   position: fixed;
   width: 100%;
-  text-align: right;
+  text-align: center;
   background-color: #2574A9;
   top: 0;
+  left: 0;
+  height: 50px;
   z-index: 1;
+  padding-top: 15px;
+  a {
+    font-family: 'raleway';
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: white;
+    margin: 20px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .pages {
