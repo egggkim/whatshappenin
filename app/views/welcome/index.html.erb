@@ -11,10 +11,8 @@
 			<!-- ============== USER SIGN UP AND LOG IN TOP NAV BAR============== -->
 			<% if !logged_in? %>
         <div class="nav">
-	        <%= link_to "Log In", login_path %>
-	        <%= link_to "Sign Up", signup_path %>
-	        <!-- <button type="button" data-toggle="modal" data-target="#loginModal">Log In</button> -->
-	     <!--    <button type="button" data-toggle="modal" data-target="#newUserModal">Sign Up</button> -->
+	        <a href="#loginModal" data-toggle="modal">Log In</a>
+	        <a href="#signupModal" data-toggle="modal">Sign Up</a>
         </div>
 
 				<!-- ============== Log In Modal ============== -->
