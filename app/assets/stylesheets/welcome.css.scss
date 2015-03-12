@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.nav {
+  position: fixed;
+  width: 100%;
+  text-align: right;
+  background-color: #2574A9;
+  top: 0;
+  z-index: 1;
+}
+
 .pages {
   width: 75%;
   margin: 0 auto;
@@ -146,5 +155,6 @@
 }
 
 .form-align {
+  width: 100%;
   text-align: left;
 }

@@ -8,11 +8,12 @@
 				<% end %>
 			</div>
 
-			<!-- ============== USER SIGN UP AND LOG IN ============== -->
+			<!-- ============== USER SIGN UP AND LOG IN TOP NAV BAR============== -->
 			<% if !logged_in? %>
-        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
-
-        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+        <div class="nav">
+	        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#loginModal">Log In</button>
+	        <button type="button" class="btn btn-info btn-register btn-lg" data-toggle="modal" data-target="#newUserModal">Sign Up</button>
+        </div>
 
 				<!-- ============== Log In Modal ============== -->
 				<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -23,12 +24,14 @@
 				      </div>
 
 				      <div class="modal-body form-align"> 
-				      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
-						      <%= f.text_field :email, label: "Email:", class: "form-font" %>
-						      <%= f.password_field :password, label: "Password:", class: "form-font" %>
+					      <div class="users-form">
+					      	<%= bootstrap_form_for :login, url: login_path  do |f| %>
+							      <%= f.text_field :email, label: "Email:", class: "form-font" %>
+							      <%= f.password_field :password, label: "Password:", class: "form-font" %>
 
-						      <%= f.submit 'Log In', class: "btn btn-info" %>
-					    <% end %>
+							      <%= f.submit 'Log In', class: "btn btn-info" %>
+						    <% end %>
+						    </div>
 				      </div>
 
 				      <div class="modal-footer">
@@ -47,16 +50,18 @@
 				      </div>
 
 				      <div class="modal-body form-align">
-				      	<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
-							    <%= f.text_field :name, label: "Name:", class: "form-font" %>
-							    <%= f.email_field :email, label: "Email:", class: "form-font" %>
-							    <%= f.password_field :password, label: "Password:", class: "form-font" %>
-							    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
-							    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
-							    <%= f.file_field :avatar %>
+				      	<div class="users-form">
+					      		<%= bootstrap_form_for :user, url: {:controller=> 'users', :action => "create"} do |f| %>
+								    <%= f.text_field :name, label: "Name:", class: "form-font" %>
+								    <%= f.email_field :email, label: "Email:", class: "form-font" %>
+								    <%= f.password_field :password, label: "Password:", class: "form-font" %>
+								    <%= f.password_field :password_confirmation, label: "Password Confirmation:", class: "form-font" %>
+								    <%= f.text_field :city, label: "Your city:", class: "form-font" %>
+								    <%= f.file_field :avatar %>
 
-							    <%= f.submit "Sign me up!", class: "btn btn-info" %>
-					  		<% end %>
+								    <%= f.submit "Sign me up!", class: "btn btn-info" %>
+						  		<% end %>
+					  		</div>
 				      </div>
 
 				      <div class="modal-footer">
