@@ -23,7 +23,7 @@ What’s Happenin’ is an application that allows users to see what places are 
 * Pivotal Tracker
 
 #Instructions
-* link to Herokuapp: http://www.whatshappenin.herokuapp.com
+* link to Herokuapp: http://whatshappenin.herokuapp.com
 
 #About the developers
 Created by Joey B Atiba, Karen S Kim, Tony Alden, and Zillah Chen as a group project for General Assembly's WDI cohort 12-13. Contact us with any questions via github! We would love to hear from you. 
